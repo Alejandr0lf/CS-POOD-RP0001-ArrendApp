@@ -20,8 +20,15 @@ public interface ToolForString {
             twoParts[0] = Long.valueOf(code);
             return twoParts;
         }
-        throw new RuntimeException("JAVA-MT-TOOLFORSTRING: The inputed String is not valid like a phone movile number");
+        StringBuilder error = new StringBuilder();
+        error.append("JAVA-MT-TOOLFORSTRING: The inputed String is not valid like a phone movile number");
+        error.append(padLeft("DECOMPOSE NUMBER ERROR", 80));
+        throw new RuntimeException(error.toString());
     }
+
+    /* -------------------------------------------------------------------------- */
+    /* Private Methods */
+    /* -------------------------------------------------------------------------- */
 
     /**
      * This method will comprobate if the String inputed is valid for the convertion
@@ -49,5 +56,15 @@ public interface ToolForString {
         }
 
         return true;
+    }
+
+    /**
+     * This method will add a pading for a specific string
+     * @param text
+     * @param width
+     * @return
+     */
+    private String padLeft(String text, int width) {
+        return String.format("%" + width + "s", text);
     }
 }

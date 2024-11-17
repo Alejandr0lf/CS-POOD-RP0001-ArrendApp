@@ -2,7 +2,7 @@ package Model.User;
 
 import Model.Tools.ToolForString;
 
-public class User implements ToolForString {
+public abstract class User implements ToolForString {
     private int ID; // number of the document (Cédula)
     private String name;
     private String lastname;
@@ -23,9 +23,9 @@ public class User implements ToolForString {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("User:\n").append("\tCédula: " + ID + "\n");
+        str.append(this.getClass().getSimpleName() + "\n").append("\tCédula: " + ID + "\n");
         str.append("\tName: " + name + " ").append(lastname + "\n");
-        str.append("\tEmail: " + email + "\n").append("\t"+ this.number);
+        str.append("\tEmail: " + email + "\n").append("\t" + this.number);
         return str.toString();
     }
 
