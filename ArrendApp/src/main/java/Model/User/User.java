@@ -6,7 +6,7 @@ public class User implements ToolForString {
     private int ID; // number of the document (Cédula)
     private String name;
     private String lastname;
-    private String number;
+    private PhoneNumber number;
     private String email;
 
     public User() {
@@ -16,16 +16,16 @@ public class User implements ToolForString {
         ID = iD;
         this.name = name;
         this.lastname = lastname;
-        this.number = number;
+        this.number = new PhoneNumber(decomposeNumber(number)[0], decomposeNumber(number)[1]);
         this.email = email;
     }
 
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("User:\n").append("\t" + ID + "\n").append("\t" + name + "\n");
-        str.append("\t" + lastname + "\n").append("\t" + email + "\n");
-        str.append("\t+" + decomposeNumber(number)[0]).append(" ").append(decomposeNumber(number)[1]);
+        str.append("User:\n").append("\tCédula: " + ID + "\n");
+        str.append("\tName: " + name + " ").append(lastname + "\n");
+        str.append("\tEmail: " + email + "\n").append("\t"+ this.number);
         return str.toString();
     }
 
