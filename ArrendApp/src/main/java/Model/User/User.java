@@ -3,7 +3,7 @@ package Model.User;
 import Model.Tools.ToolForString;
 
 public abstract class User implements ToolForString {
-    private int ID; // number of the document (Cédula)
+    private long ID; // number of the document (Cédula)
     private String name;
     private String lastname;
     private PhoneNumber number;
@@ -12,7 +12,7 @@ public abstract class User implements ToolForString {
     public User() {
     }
 
-    public User(int iD, String name, String lastname, String number, String email) {
+    public User(long iD, String name, String lastname, String number, String email) {
         ID = iD;
         this.name = name;
         this.lastname = lastname;

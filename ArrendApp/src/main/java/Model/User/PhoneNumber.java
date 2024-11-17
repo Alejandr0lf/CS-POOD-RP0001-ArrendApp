@@ -8,8 +8,8 @@ public class PhoneNumber {
     public PhoneNumber() {
     }
 
-    public PhoneNumber(short code, long number) {
-        this.code = code;
+    public PhoneNumber(long code, long number) {
+        this.code = (short) code;
         this.number = number;
     }
 

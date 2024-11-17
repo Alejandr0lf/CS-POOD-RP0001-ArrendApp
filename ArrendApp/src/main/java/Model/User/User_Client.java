@@ -15,7 +15,7 @@ public class User_Client extends User {
     public User_Client() {
     }
 
-    public User_Client(int iD, String name, String lastname, String number, String email) {
+    public User_Client(long iD, String name, String lastname, String number, String email) {
         super(iD, name, lastname, number, email);
     }
 
@@ -24,7 +24,7 @@ public class User_Client extends User {
     /* -------------------------------------------------------------------------- */
 
     public void rentProperty(Building building){
-        
+
     }
 
 }
