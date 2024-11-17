@@ -12,11 +12,11 @@ public abstract class User implements ToolForString {
     public User() {
     }
 
-    public User(long iD, String name, String lastname, String number, String email) {
+    public User(long iD, String name, String lastname, String num, String email) {
         ID = iD;
         this.name = name;
         this.lastname = lastname;
-        this.number = new PhoneNumber(decomposeNumber(number)[0], decomposeNumber(number)[1]);
+        this.number = isValidMovile(num) ? new PhoneNumber(num) : new PhoneNumber();
         this.email = email;
     }
 
