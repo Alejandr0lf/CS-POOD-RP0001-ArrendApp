@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import Model.appObjects.Building;
 import Model.appObjects.Rent;
 
+@SuppressWarnings("unused")
 public class User_Comercial extends User {
 
     private ArrayList<Building> buildings;

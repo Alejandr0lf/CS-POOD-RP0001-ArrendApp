@@ -5,8 +5,10 @@ import Model.appObjects.Building;
 import Model.appObjects.Rent;
 import Model.appObjects.Request;
 
+@SuppressWarnings("unused")
 public class User_Client extends User {
 
+    
     private ArrayList<Rent> activeRented;
 
     /* -------------------------------------------------------------------------- */

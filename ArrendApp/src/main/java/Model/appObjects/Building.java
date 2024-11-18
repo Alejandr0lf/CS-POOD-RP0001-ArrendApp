@@ -1,8 +1,6 @@
 package Model.appObjects;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import Model.User.User_Client;
 import Model.User.User_Comercial;
 
@@ -18,31 +16,18 @@ public class Building {
     private boolean equiped;
     private boolean hasCook;
     private boolean includedServices;
-    private HashMap<String, Boolean> services;
+    private Services services;
     private ArrayList<User_Client> AllTenants;
     private boolean available;
 
-    public Building(int id, User_Comercial landlord, Direction direction, int levels, int rooms, int bathrooms,
-            boolean equiped, boolean hasCook, boolean includedServices, boolean available) {
-        initServices();
-        this.id = id;
-        this.landlord = landlord;
-        this.direction = direction;
-        this.levels = levels;
-        this.rooms = rooms;
-        this.bathrooms = bathrooms;
-        this.score = 0;
-        this.equiped = equiped;
-        this.hasCook = hasCook;
-        this.includedServices = includedServices;
-        this.available = available;
+    public Building() {
     }
 
     // Constructor
     public Building(int id, User_Comercial landlord, Direction direction, int levels, int rooms, int bathrooms,
             boolean equiped, boolean hasCook, boolean includedServices, boolean available, boolean wifi, boolean water,
             boolean electricity, boolean gas, boolean administration) {
-        initServices(wifi, water, electricity, gas, administration);
+        
         this.id = id;
         this.landlord = landlord;
         this.direction = direction;
@@ -53,6 +38,7 @@ public class Building {
         this.equiped = equiped;
         this.hasCook = hasCook;
         this.includedServices = includedServices;
+        this.services = new Services(wifi, water, electricity, administration, gas);
         this.AllTenants = new ArrayList<>();
         this.available = available;
     }
@@ -78,30 +64,6 @@ public class Building {
         this.hasCook = hasCook;
         this.includedServices = includedServices;
         this.available = available;
-    }
-
-    public void modifyService(String service, boolean status) {
-        this.services.replace(service, status);
-    }
-
-    /* ----------------------------- Private methods ---------------------------- */
-
-    private void initServices() {
-        this.services = new HashMap<>();
-        this.services.put("Wifi", false);
-        this.services.put("Water", false);
-        this.services.put("Electricity", false);
-        this.services.put("Gas", false);
-        this.services.put("Administration", false);
-    }
-
-    private void initServices(boolean wifi, boolean water, boolean electricity, boolean gas, boolean administration) {
-        this.services = new HashMap<>();
-        this.services.put("Wifi", wifi);
-        this.services.put("Water", water);
-        this.services.put("Electricity", electricity);
-        this.services.put("Gas", gas);
-        this.services.put("Administration", administration);
     }
 
     /* -------------------------------------------------------------------------- */
@@ -180,14 +142,6 @@ public class Building {
         this.includedServices = includedServices;
     }
 
-    public HashMap<String, Boolean> getServices() {
-        return services;
-    }
-
-    public void setServices(HashMap<String, Boolean> services) {
-        this.services = services;
-    }
-
     public ArrayList<User_Client> getAllTenants() {
         return AllTenants;
     }
@@ -208,4 +162,11 @@ public class Building {
         return id;
     }
 
+    public Services getServices() {
+        return services;
+    }
+
+    public void setServices(Services services) {
+        this.services = services;
+    }
 }
