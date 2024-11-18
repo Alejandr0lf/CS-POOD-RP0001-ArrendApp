@@ -7,9 +7,10 @@ import Model.User.User_Client;
 import Model.User.User_Comercial;
 
 public class Building {
+
     private int id;
     private User_Comercial landlord;
-    private String direction;
+    private Direction direction;
     private int levels;
     private int rooms;
     private int bathrooms;
@@ -17,11 +18,11 @@ public class Building {
     private boolean equiped;
     private boolean hasCook;
     private boolean includedServices;
-    private HashMap<String, Boolean> services; // Ejemplo: {"WiFi": true, "Luz": true}
+    private HashMap<String, Boolean> services;
     private ArrayList<User_Client> AllTenants;
     private boolean available;
 
-    public Building(int id, User_Comercial landlord, String direction, int levels, int rooms, int bathrooms,
+    public Building(int id, User_Comercial landlord, Direction direction, int levels, int rooms, int bathrooms,
             boolean equiped, boolean hasCook, boolean includedServices, boolean available) {
         initServices();
         this.id = id;
@@ -38,11 +39,10 @@ public class Building {
     }
 
     // Constructor
-    public Building(int id, User_Comercial landlord, String direction, int levels, int rooms, int bathrooms,
+    public Building(int id, User_Comercial landlord, Direction direction, int levels, int rooms, int bathrooms,
             boolean equiped, boolean hasCook, boolean includedServices, boolean available, boolean wifi, boolean water,
-            boolean electricity, boolean gas, boolean security, boolean administration, boolean sewerage,
-            boolean publicLight) {
-        initServices(wifi, water, electricity, gas, security, administration, sewerage, publicLight);
+            boolean electricity, boolean gas, boolean administration) {
+        initServices(wifi, water, electricity, gas, administration);
         this.id = id;
         this.landlord = landlord;
         this.direction = direction;
@@ -63,10 +63,10 @@ public class Building {
 
     public void addscore(int score, User_Client cliente, String comentario) {
         if (score < 0 || score > 10) {
-            throw new IllegalArgumentException("La puntuación debe estar entre 0 y 10.");
+            throw new IllegalArgumentException("The Score needs to be between 0 and 10.");
         }
         this.score = (this.score + score) / 2;
-        System.out.println("Comentario del cliente: " + comentario);
+        System.out.println("Comment: " + comentario);
     }
 
     public void actualizarDatos(int levels, int rooms, int bathrooms, boolean equiped, boolean hasCook,
@@ -92,24 +92,16 @@ public class Building {
         this.services.put("Water", false);
         this.services.put("Electricity", false);
         this.services.put("Gas", false);
-        this.services.put("Security", false);
         this.services.put("Administration", false);
-        this.services.put("Sewerage", false);
-        this.services.put("PublicLight", false);
     }
 
-    private void initServices(boolean wifi, boolean water,
-            boolean electricity, boolean gas, boolean security, boolean administration, boolean sewerage,
-            boolean publicLight) {
+    private void initServices(boolean wifi, boolean water, boolean electricity, boolean gas, boolean administration) {
         this.services = new HashMap<>();
         this.services.put("Wifi", wifi);
         this.services.put("Water", water);
         this.services.put("Electricity", electricity);
         this.services.put("Gas", gas);
-        this.services.put("Security", security);
         this.services.put("Administration", administration);
-        this.services.put("Sewerage", sewerage);
-        this.services.put("PublicLight", publicLight);
     }
 
     /* -------------------------------------------------------------------------- */
@@ -124,11 +116,11 @@ public class Building {
         this.landlord = landlord;
     }
 
-    public String getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 
-    public void setDirection(String direction) {
+    public void setDirection(Direction direction) {
         this.direction = direction;
     }
 

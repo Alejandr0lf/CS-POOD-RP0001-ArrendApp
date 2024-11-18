@@ -3,6 +3,7 @@ package Model.User;
 import java.util.ArrayList;
 import Model.appObjects.Building;
 import Model.appObjects.Rent;
+import Model.appObjects.Request;
 
 public class User_Client extends User {
 
@@ -15,16 +16,24 @@ public class User_Client extends User {
     public User_Client() {
     }
 
-    public User_Client(long iD, String name, String lastname, String number, String email) {
-        super(iD, name, lastname, number, email);
+    public User_Client(long id, String name, String lastname, String number, String email) {
+        super(id, name, lastname, number, email);
     }
 
     /* -------------------------------------------------------------------------- */
     /* Public Methods */
     /* -------------------------------------------------------------------------- */
 
-    public void rentProperty(Building building){
-
+    /**
+     * Este método debe enviar una solicitud (Request) al dueño (User_Comercial), y,
+     * si esta se envía con éxito,se añade un nuevo alquiler (Rent) a la lista
+     * activeRented.
+     * 
+     * @param building
+     * @return
+     */
+    public Request rentProperty(Building building) {
+        return new Request(this, building);
     }
 
 }
