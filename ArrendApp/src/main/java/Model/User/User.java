@@ -2,7 +2,7 @@ package Model.User;
 
 import Model.Tools.ToolForString;
 
-public class User implements ToolForString {
+public abstract class User implements ToolForString {
     private long ID; // number of the document (Cédula)
     private String name;
     private String lastname;

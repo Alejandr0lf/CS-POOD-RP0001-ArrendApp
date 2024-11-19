@@ -11,6 +11,10 @@ public class UserService {
         return userDAO.consultar();
     }
 
+    public User consultar(User user){
+        return userDAO.consultarId(user);
+    }
+
     public int crear(User user){
         return userDAO.create(user);
     }
