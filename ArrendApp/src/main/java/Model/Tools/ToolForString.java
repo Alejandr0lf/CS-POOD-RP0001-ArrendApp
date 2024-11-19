@@ -25,23 +25,11 @@ public interface ToolForString {
      * @param phoneNumber
      * @return
      */
-    private boolean verifyMovile(String input) {
-
-        // Verify if the String is not null
-        if (input != null) {
-
-            // Verify if the String isn't empty, and doesn't contains letters
-            if (!input.isEmpty() || !input.matches(".*[a-zA-Z].*")) {
-
-                // Replace all the spaces
-                input = input.replaceAll("[^0-9]", "");
-                String regex = "\\+\\d{1,4}\\d{10}";
-
-                // Verify if the string starts with +, has more than 11 characters, and has the
-                // regex format
-                if (input.startsWith("+") && input.length() > 11 && input.matches(regex)) {
-                    return true;
-                }
+    private boolean verifyMovile(String num) {
+        if (num != null) {
+            num = num.replaceAll("[^0-9]", "");
+            if (num.length() >= 11 && num.length() <= 14) {
+                return true;
             }
         }
         return false;
