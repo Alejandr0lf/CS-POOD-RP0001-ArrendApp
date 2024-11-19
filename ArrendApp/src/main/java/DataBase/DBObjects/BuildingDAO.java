@@ -14,8 +14,8 @@ import Model.User.User_Client;
 import Model.User.User_Comercial;
 
 public class BuildingDAO {
-    public static final String SQLCONSULTA = "SELECT u.ID,  FROM DB_UserBuildings u";
-    public static final String SQLINSERT = "INSERT INTO DB_UserUsers(ID, name, lastname, phoneNumber, email) VALUES (?, ?, ?, ?, ?)";
+    public static final String SQLCONSULTA = "SELECT b.ID, b.landlord, b.levels, b.rooms, b.score, b.equiped, b.hasCook, inclus FROM DB_UserBuildings b";
+    public static final String SQLINSERT = "INSERT INTO DB_UserClient(ID, name, lastname, phoneNumber, email) VALUES (?, ?, ?, ?, ?)";
     public static final String SQLINSERTCOM = "INSERT INTO DB_UserComercial(ID, building) VALUES (?, ?)";
     public static final String SQLINSERTCLI = "INSERT INTO DB_UserClient(ID) VALUES (?)";
     public static final String SQLDELETEID = "DELETE FROM DB_UserUsers WHERE id = (?)";
