@@ -9,10 +9,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import DataBase.Connection.DataBaseConnection;
+import DataBase.DBServices.UserService;
 import Model.User.User;
 import Model.User.User_Client;
 import Model.User.User_Comercial;
 import Model.appObjects.Building;
+import Model.appObjects.Direction;
+import Model.appObjects.Services;
 
 public class BuildingDAO {
     public static final String SQLCONSULTA = "SELECT b.ID, b.landlord, b.levels, b.rooms, b.bathrooms, b.score, b.equiped, b.hasCook, b.includedServices, b.services, b.available, b.direction FROM DB_UserBuildings b";
@@ -36,14 +39,14 @@ public class BuildingDAO {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet resultado = null;
-        List<Building> building = new ArrayList<>();
+        List<Building> buildings = new ArrayList<>();
         try {
             con = DataBaseConnection.getConnection();
             ps = con.prepareStatement(SQLCONSULTA);
             resultado = ps.executeQuery();
             while (resultado.next()) {
-                String ID = resultado.getString("ID");
-                String landlord = resultado.getString("landlord");
+                int ID = resultado.getInt("ID");
+                String landlord = resultado.getString("landlord"); // foreing
                 int levels = resultado.getInt("levels");
                 int rooms = resultado.getInt("rooms");
                 int bathrooms = resultado.getInt("bathrooms");
@@ -52,78 +55,93 @@ public class BuildingDAO {
                 boolean hasCook = resultado.getBoolean("hasCook");
                 boolean includedServices = resultado.getBoolean("includedServices");
                 boolean available = resultado.getBoolean("available");
-                int services = resultado.getInt("services");
-                String direction = resultado.getString(direction);
-                User_Client user = new User_Client(cedula, nombre, apellido, telefono, correo);
-                users.add(user);
+                int services = resultado.getInt("services"); // foreing
+                String direction = resultado.getString("direction"); // foreing
+
+                User_Comercial u = (User_Comercial) (new UserService().consultar(new User_Comercial(landlord)));
+
+                // Services srv = (new ServicesService().check(services)); -----> objeto
+                // servicios
+                // Direction dr = (new DirectionService().check(direction)); ---> objeto
+                // direccion
+
+                Building bld = new Building(ID, u, null, levels, rooms, bathrooms, score, equiped, hasCook,
+                        includedServices, available, false, false, false, false, false);
+
+                buildings.add(bld);
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return users;
+        return buildings;
     }
 
-    public int create(User user) {
-        Connection con = null;
-        PreparedStatement ps = null;
-        int registros = 0;
-        try {
-            con = DataBaseConnection.getConnection();
-            ps = con.prepareStatement(SQLINSERT);
-            ps.setLong(1, user.getID());
-            ps.setString(2, user.getName());
-            ps.setString(3, user.getLastname());
-            ps.setString(4, user.getNumber());
-            ps.setString(5, user.getEmail());
-            registros = ps.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return registros;
-    }
+    // public int create(User user) {
+    //     Connection con = null;
+    //     PreparedStatement ps = null;
+    //     int registros = 0;
+    //     try {
+    //         con = DataBaseConnection.getConnection();
+    //         ps = con.prepareStatement(SQLINSERT);
+    //         ps.setLong(1, user.getID());
+    //         ps.setString(2, user.getName());
+    //         ps.setString(3, user.getLastname());
+    //         ps.setString(4, user.getNumber());
+    //         ps.setString(5, user.getEmail());
+    //         registros = ps.executeUpdate();
+    //     } catch (SQLException ex) {
+    //         Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
+    //     } catch (ClassNotFoundException ex) {
+    //         Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
+    //     }
+    //     return registros;
+    // }
 
-    public int delete(User user) {
-        Connection con = null;
-        PreparedStatement ps = null;
-        int registros = 0;
-        try {
-            con = DataBaseConnection.getConnection();
-            ps = con.prepareStatement(SQLDELETEID);
-            ps.setLong(1, user.getID());
-            registros = ps.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return registros;
-    }
 
-    public int update(User user) {
-        Connection con = null;
-        PreparedStatement ps = null;
-        int registros = 0;
+    
+    // public int delete(User user) {
+    //     Connection con = null;
+    //     PreparedStatement ps = null;
+    //     int registros = 0;
+    //     try {
+    //         con = DataBaseConnection.getConnection();
+    //         ps = con.prepareStatement(SQLDELETEID);
+    //         ps.setLong(1, user.getID());
+    //         registros = ps.executeUpdate();
+    //     } catch (SQLException ex) {
+    //         Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
+    //     } catch (ClassNotFoundException ex) {
+    //         Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
+    //     }
+    //     return registros;
+    // }
 
-        try {
-            con = DataBaseConnection.getConnection();
-            ps = con.prepareStatement(SQLACTUALIZAR);
 
-            ps.setString(1, user.getName());
-            ps.setString(2, user.getLastname());
-            ps.setString(3, user.getNumber());
-            ps.setString(4, user.getEmail());
-            ps.setLong(5, user.getID());
-            registros = ps.executeUpdate();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return registros;
-    }
+    // public int update(User user) {
+    //     Connection con = null;
+    //     PreparedStatement ps = null;
+    //     int registros = 0;
+
+    //     try {
+    //         con = DataBaseConnection.getConnection();
+    //         ps = con.prepareStatement(SQLACTUALIZAR);
+
+    //         ps.setString(1, user.getName());
+    //         ps.setString(2, user.getLastname());
+    //         ps.setString(3, user.getNumber());
+    //         ps.setString(4, user.getEmail());
+    //         ps.setLong(5, user.getID());
+    //         registros = ps.executeUpdate();
+
+    //     } catch (SQLException ex) {
+    //         Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
+    //     } catch (ClassNotFoundException ex) {
+    //         Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
+    //     }
+    //     return registros;
+    // }
 }

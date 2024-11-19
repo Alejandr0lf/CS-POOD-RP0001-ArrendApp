@@ -4,25 +4,26 @@ import java.util.List;
 
 import DataBase.DBObjects.BuildingDAO;
 import Model.User.User;
+import Model.appObjects.Building;
 
 public class BuildingService {
     public class UserService {
-        BuildingDAO buildingDao = new BuildingDAO();
+        BuildingDAO buildingDAO = new BuildingDAO();
 
-        public List<User> consultar() {
-            return buildingDao.consultar();
+        public List<Building> consultar() {
+            return buildingDAO.consultar();
         }
 
-        public int crear(User user) {
-            return buildingDao.create(user);
-        }
+        // public int crear(User user) {
+        //     return buildingDAO.create(user);
+        // }
 
-        public int delete(User user) {
-            return buildingDao.delete(user);
-        }
+        // public int delete(User user) {
+        //     return buildingDAO.delete(user);
+        // }
 
-        public int update(User user) {
-            return buildingDao.update(user);
-        }
+        // public int update(User user) {
+        //     return buildingDAO.update(user);
+        // }
     }
 }

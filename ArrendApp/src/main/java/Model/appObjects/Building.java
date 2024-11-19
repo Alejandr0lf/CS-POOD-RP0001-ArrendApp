@@ -24,7 +24,7 @@ public class Building {
     }
 
     // Constructor
-    public Building(int id, User_Comercial landlord, Direction direction, int levels, int rooms, int bathrooms,
+    public Building(int id, User_Comercial landlord, Direction direction, int levels, int rooms, int bathrooms, int score,
             boolean equiped, boolean hasCook, boolean includedServices, boolean available, boolean wifi, boolean water,
             boolean electricity, boolean gas, boolean administration) {
         
@@ -34,7 +34,7 @@ public class Building {
         this.levels = levels;
         this.rooms = rooms;
         this.bathrooms = bathrooms;
-        this.score = 0;
+        this.score = score;
         this.equiped = equiped;
         this.hasCook = hasCook;
         this.includedServices = includedServices;

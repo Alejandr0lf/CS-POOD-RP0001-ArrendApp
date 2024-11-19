@@ -13,6 +13,10 @@ public class User_Comercial extends User {
     public User_Comercial() {
     }
 
+    public User_Comercial(String ID) {
+        super(ID);
+    }
+
     public User_Comercial(int iD, String name, String lastname, String number, String email) {
         super(iD, name, lastname, number, email);
     }
