@@ -12,15 +12,19 @@ public abstract class User implements ToolForString {
     public User() {
     }
 
+    public User(String ID){
+        this.ID = Long.valueOf(ID);
+    }
+
     public User(long iD, String name, String lastname, String num, String email) {
-        if (isValidMovile(num)) {
+        try {
             ID = iD;
-            this.number = num;
+            this.number = isValidMovile(num);
             this.name = name;
             this.lastname = lastname;
             this.email = email;
-        }else{
-            throw new RuntimeException("Error creando el usuario... Número incorrecto " + num);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 

@@ -10,7 +10,7 @@ public interface ToolForString {
      * @param number The String inputed
      * @return the Array with the code and the number
      */
-    public default boolean isValidMovile(String number) {
+    public default String isValidMovile(String number) {
         return this.verifyMovile(number);
     }
 
@@ -25,13 +25,14 @@ public interface ToolForString {
      * @param phoneNumber
      * @return
      */
-    private boolean verifyMovile(String num) {
+    private String verifyMovile(String num) {
         if (num != null) {
             num = num.replaceAll("[^0-9]", "");
             if (num.length() >= 11 && num.length() <= 14) {
-                return true;
+                return "+" + num;
             }
         }
-        return false;
+        throw new IllegalArgumentException(
+                "The inputed String isn't valid to convert into a number with the +[code][number] format!");
     }
 }

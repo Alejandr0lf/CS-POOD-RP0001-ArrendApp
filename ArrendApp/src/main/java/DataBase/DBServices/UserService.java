@@ -10,4 +10,17 @@ public class UserService {
     public List<User> consultar(){
         return userDAO.consultar();
     }
+
+    public int crear(User user){
+        return userDAO.create(user);
+    }
+
+    public int delete(User user){
+        return userDAO.delete(user);
+    }
+
+    public int update(User user){
+        return userDAO.update(user);
+    }
+
 }
