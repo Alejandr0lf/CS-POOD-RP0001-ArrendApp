@@ -11,13 +11,10 @@ import java.util.logging.Logger;
 import DataBase.Connection.DataBaseConnection;
 import Model.User.User;
 import Model.User.User_Client;
-import Model.User.User_Comercial;
 
 public class UserDAO {
     public static final String SQLCONSULTA = "SELECT u.name, u.lastname, u.ID, u.phoneNumber, u.email FROM DB_UserUsers u";
     public static final String SQLINSERT = "INSERT INTO DB_UserUsers(ID, name, lastname, phoneNumber, email) VALUES (?, ?, ?, ?, ?)";
-    public static final String SQLINSERTCOM = "INSERT INTO DB_UserComercial(ID, building) VALUES (?, ?)";
-    public static final String SQLINSERTCLI = "INSERT INTO DB_UserClient(ID) VALUES (?)";
     public static final String SQLDELETEID = "DELETE FROM DB_UserUsers WHERE id = (?)";
     public static final String SQLACTUALIZAR = "UPDATE DB_UserUsers SET name = ?, lastname = ?, phoneNumber = ?, email = ? WHERE ID = ?";
     public static final String SQLCONSULTA_ID = "SELECT u.name, u.lastname, u.ID, u.phoneNumber, u.email FROM DB_UserUsers u WHERE u.ID = ?";
@@ -57,7 +54,7 @@ public class UserDAO {
         try {
             con = DataBaseConnection.getConnection();
             ps = con.prepareStatement(SQLCONSULTA_ID, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.TYPE_FORWARD_ONLY);
-            ps.setLong(1, user.getID());
+            ps.setLong(1, user.getId());
             resultado = ps.executeQuery();
             resultado.absolute(1);
             String nombre = resultado.getString("name");
@@ -83,10 +80,10 @@ public class UserDAO {
         try {
             con = DataBaseConnection.getConnection();
             ps = con.prepareStatement(SQLINSERT);
-            ps.setLong(1, user.getID());
+            ps.setLong(1, user.getId());
             ps.setString(2, user.getName());
             ps.setString(3, user.getLastname());
-            ps.setString(4, user.getNumber());
+            ps.setString(4, user.getphoneNumber());
             ps.setString(5, user.getEmail());
             registros = ps.executeUpdate();
         } catch (SQLException ex) {
@@ -104,7 +101,7 @@ public class UserDAO {
         try {
             con = DataBaseConnection.getConnection();
             ps = con.prepareStatement(SQLDELETEID);
-            ps.setLong(1, user.getID());
+            ps.setLong(1, user.getId());
             registros = ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -125,9 +122,9 @@ public class UserDAO {
 
             ps.setString(1, user.getName());
             ps.setString(2, user.getLastname());
-            ps.setString(3, user.getNumber());
+            ps.setString(3, user.getphoneNumber());
             ps.setString(4, user.getEmail());
-            ps.setLong(5, user.getID());
+            ps.setLong(5, user.getId());
             registros = ps.executeUpdate();
 
         } catch (SQLException ex) {

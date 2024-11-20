@@ -22,8 +22,8 @@ public class User_Client extends User {
         super(ID);
     }
 
-    public User_Client(long id, String name, String lastname, String number, String email) {
-        super(id, name, lastname, number, email);
+    public User_Client(long id, String name, String lastname, String phoneNumber, String email) {
+        super(id, name, lastname, phoneNumber, email);
     }
 
     /* -------------------------------------------------------------------------- */
