@@ -4,12 +4,11 @@ import java.util.Scanner;
 import DataBase.DBServices.UserService;
 import Model.User.*;
 
+/**
+ * TEST 1: CREATE AN NORMAL USER AND INSERT INTO THE DATABASE
+ */
 public class User_test1 {
     public static void main(String[] args) {
-
-        /* -------------------------------------------------------------------------- */
-        /* Test para crear usuarios */
-        /* -------------------------------------------------------------------------- */
 
         Scanner scan = new Scanner(System.in);
 
@@ -29,6 +28,14 @@ public class User_test1 {
         System.out.println("Email: ");
         String email = scan.nextLine();
 
+        /*
+         * --------------------------------------------------------------------------
+         *
+         * We use and User_Client because could have the same parameters of an normal
+         * User, and User is abstract and can't be instanced
+         *
+         * --------------------------------------------------------------------------
+         */
         User user = new User_Client(id, name, lastname, number, email);
 
         UserService add = new UserService();

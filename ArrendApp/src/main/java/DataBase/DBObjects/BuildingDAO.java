@@ -10,13 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import DataBase.Connection.DataBaseConnection;
 import DataBase.DBServices.UserService;
-import Model.User.User;
-import Model.User.User_Client;
 import Model.User.User_Comercial;
 import Model.appObjects.Building;
-import Model.appObjects.Direction;
-import Model.appObjects.Services;
-
 public class BuildingDAO {
     public static final String SQLCONSULTA = "SELECT b.ID, b.landlord, b.levels, b.rooms, b.bathrooms, b.score, b.equiped, b.hasCook, b.includedServices, b.services, b.available, b.direction FROM DB_UserBuildings b";
     // public static final String SQLINSERT = "INSERT INTO DB_UserClient(ID, name,
@@ -55,8 +50,8 @@ public class BuildingDAO {
                 boolean hasCook = resultado.getBoolean("hasCook");
                 boolean includedServices = resultado.getBoolean("includedServices");
                 boolean available = resultado.getBoolean("available");
-                int services = resultado.getInt("services"); // foreing
-                String direction = resultado.getString("direction"); // foreing
+                // int services = resultado.getInt("services"); // foreing
+                // String direction = resultado.getString("direction"); // foreing
 
                 User_Comercial u = (User_Comercial) (new UserService().consultar(new User_Comercial(landlord)));
 

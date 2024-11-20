@@ -13,6 +13,7 @@ DataBase\DBServices\UserClientService.class
 Model\appObjects\Building.class
 Model\appObjects\Rent.class
 Model\User\User_Client.class
+testing\User\User_test5.class
 com\mycompany\arrendapp\JakartaRestConfiguration.class
 Model\Tools\ToolForString.class
 ControlAPI\DBUserCliente_Controller.class

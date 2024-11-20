@@ -1,22 +1,6 @@
 package ControlAPI;
 
-import jakarta.jws.soap.SOAPBinding.Use;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.DELETE;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.List;
-import DataBase.DBServices.UserClientService;
-import DataBase.DBServices.UserService;
-import Model.User.User;
-import Model.User.User_Client;
 
 @Path("/comercial")
 public class DBUserComercial_Controller {

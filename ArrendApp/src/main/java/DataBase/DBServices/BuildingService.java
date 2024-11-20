@@ -3,7 +3,6 @@ package DataBase.DBServices;
 import java.util.List;
 
 import DataBase.DBObjects.BuildingDAO;
-import Model.User.User;
 import Model.appObjects.Building;
 
 public class BuildingService {
