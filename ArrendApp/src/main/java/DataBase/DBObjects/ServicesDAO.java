@@ -81,6 +81,7 @@ public class ServicesDAO {
         try {
             con = DataBaseConnection.getConnection();
             ps = con.prepareStatement(SQLINSERT);
+            System.out.println("La ID es: " + services.getId());
             ps.setLong(1, services.getId());
             ps.setBoolean(2, services.isWifi());
             ps.setBoolean(3, services.isWater());
