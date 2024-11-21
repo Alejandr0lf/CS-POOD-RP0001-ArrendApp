@@ -57,6 +57,7 @@ public class DBBuildingServices_Controller {
     @Produces(MediaType.APPLICATION_JSON)
     public Response upload(Services services) {
         try {
+            System.out.println("En el Controller, el ID es: " + services.getId());
             servicesService.create(services);
             return Response
                     .status(Response.Status.CREATED)
