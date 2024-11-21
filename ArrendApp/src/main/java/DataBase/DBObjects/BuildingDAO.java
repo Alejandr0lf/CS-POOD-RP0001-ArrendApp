@@ -1,20 +1,5 @@
 package DataBase.DBObjects;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import DataBase.Connection.DataBaseConnection;
-import DataBase.DBServices.UserService;
-import Model.User.User_Comercial;
-import Model.appObjects.Building;
-import Model.appObjects.Direction;
-import Model.appObjects.Services;
-
 public class BuildingDAO {
     public static final String SQLCHECK = "SELECT ub.ID as BuildingID, ub.landlord, ub.levels, ub.rooms, ub.bathrooms, ub.score, ub.equiped, ub.hasCook, ub.includedServices, ub.services, ub.available, ub.direction, "
             + "bs.ID as ServiceID, bs.wifi, bs.water, bs.electricity, bs.gas, bs.administration, "
