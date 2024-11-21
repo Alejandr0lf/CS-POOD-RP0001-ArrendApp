@@ -9,10 +9,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import DataBase.Connection.DataBaseConnection;
-import DataBase.DBServices.UserService;
 import Model.User.User;
-import Model.User.User_Client;
 import Model.User.User_Comercial;
+import Model.appObjects.Building;
+import Model.appObjects.Direction;
+import Model.appObjects.Services;
 
 /* -------------------------------------------------------------------------- */
 /*                         ATENCION ATENCION ATENCION                         */
@@ -23,7 +24,28 @@ import Model.User.User_Comercial;
  * objetos válidos después
  */
 public class UserComercialDAO {
-    public static final String SQLCHECKALL = "SELECT v.ID as UserID, v.Building as BuildingID FROM DB_UserComercial v WHERE v.ID = (?) AND v.status";
+    public static final String SQLCHECKALL = "SELECT ub.ID as BuildingID, ub.levels, ub.rooms, ub.bathrooms, ub.score, ub.equiped, ub.hasCook, ub.includedServices, ub.available, bs.ID as ServiceID, bs.wifi, bs.water, bs.electricity, bs.gas, bs.administration, bd.adress, bd.coordinates, bd.neighborhood, bd.city, uc.ID as UserID, uc.building, uu.name, uu.lastName, uu.phoneNumber, uu.email, uu.ID FROM DB_UserBuildings ub, DB_BuildingsServices bs, DB_BuildingDirection bd, DB_UserComercial uc, DB_UserUsers uu WHERE uu.ID = uc.ID AND uc.building = ub.ID AND ub.services = bs.ID AND ub.direction = bd.coordinates";
+
+    // "SELECT ub.ID as BuildingID, ub.landlord, ub.levels, ub.rooms, ub.bathrooms, ub.score, ub.equiped, ub.hasCook, ub.includedServices, ub.services, ub.available, ub.direction, "
+    //         + "bs.ID as ServiceID, bs.wifi, bs.water, bs.electricity, bs.gas, bs.administration, "
+    //         + "bd.adress, bd.coordinates, bd.neighborhood, bd.city, "
+    //         + "uc.ID as UserID, uc.building, "
+    //         + "uu.name, uu.lastName, uu.phoneNumber, uu.email"
+    //         + "FROM DB_UserBuildings ub, DB_BuildingsServices bs, DB_BuildingDirection bd, DB_UserComercial uc, DB_UserUsers uu"
+    //         + "WHERE uu.ID = uc.ID AND uc.building = ub.ID AND ub.services = bs.ID AND ub.direction = bd.coordinates";
+
+    // "SELECT v.ID as UserID, v.Building as BuildingID FROM DB_UserComercial v
+    // WHERE v.ID = (?) AND v.status";
+
+    // SELECT ub.ID as BuildingID, ub.landlord, ub.levels, ub.rooms, ub.bathrooms,
+    // ub.score, ub.equiped, ub.hasCook, ub.includedServices, ub.services,
+    // ub.available, ub.direction, bs.ID as ServiceID, bs.wifi, bs.water,
+    // bs.electricity, bs.gas, bs.administration, bd.adress, bd.coordinates,
+    // bd.neighborhood, bd.city, uc.ID as UserID, uc.building FROM DB_UserBuildings
+    // ub, DB_BuildingsServices bs, DB_BuildingDirection bd, DB_UserComercial uc
+    // WHERE ub.landlord = uc.ID AND ub.services = bs.ID AND ub.direction =
+    // bd.adress;
+
     // public static final String SQLCHECKID = "SELECT u.ID, u.name, u.lastname,
     // u.phoneNumber, u.email FROM DB_UserUsers u, DB_UserClient v WHERE u.ID = v.ID
     // AND v.ID = (?)";
@@ -35,8 +57,8 @@ public class UserComercialDAO {
     // DB_UserClient v ON u.ID = v.ID SET u.name = (?), u.lastname = (?),
     // u.phoneNumber = (?), u.email = (?) WHERE v.ID = (?) AND v.status = TRUE";
 
-    //consultar
-    //consultarPorID
+    // consultar
+    // consultarPorID
     //
     public List<User> check() {
         Connection con = null;
@@ -48,10 +70,44 @@ public class UserComercialDAO {
             ps = con.prepareStatement(SQLCHECKALL);
             resultado = ps.executeQuery();
             while (resultado.next()) {
-                long UserID = resultado.getLong("UserID");
-                long BuildingID = resultado.getLong("BuildingID");
 
-                //servicio de user(UserID) -> 
+                /* ---------------------------- datos de usuario ---------------------------- */
+                String nombre = resultado.getString("name");
+                String apellido = resultado.getString("lastname");
+                int id_c = resultado.getInt("ID");
+                String telefono = resultado.getString("phoneNumber");
+                String correo = resultado.getString("email");
+                User_Comercial landlord = new User_Comercial(id_c, nombre, apellido, telefono, correo);
+
+                /* --------------------------- datos del servicio --------------------------- */
+                long id_s = resultado.getLong("ServiceID");
+                boolean wifi = resultado.getBoolean("wifi");
+                boolean water = resultado.getBoolean("water");
+                boolean electricity = resultado.getBoolean("electricity");
+                boolean gas = resultado.getBoolean("gas");
+                boolean administration = resultado.getBoolean("administration");
+                Services service = new Services(id_s, wifi, water, electricity, administration, gas);
+
+                /* -------------------------- datos de la direccion ------------------------- */
+                String adress = resultado.getString("adress");
+                String neighborhood = resultado.getString("neighborhood");
+                String city = resultado.getString("neighborhood");
+                String coordinates = resultado.getString("coordinates");
+                Direction direction = new Direction(adress, coordinates, neighborhood, city);
+
+                /* ---------------------------- datos de la casa ---------------------------- */
+                //long bid = resultado.getLong("BuildingID");
+                int levels = resultado.getInt("levels");
+                int rooms = resultado.getInt("rooms");
+                int bathrooms = resultado.getInt("bathrooms");
+                int score = resultado.getInt("score");
+                boolean equiped = resultado.getBoolean("equiped");
+                boolean hasCook = resultado.getBoolean("hasCook");
+                boolean includedServices = resultado.getBoolean("includedServices");
+                boolean available = resultado.getBoolean("available");
+                Building building = new Building(landlord, direction, levels, rooms, bathrooms, score, equiped, hasCook, includedServices, available, service);
+                landlord.getBuildings().add(building);
+                users.add(landlord);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);

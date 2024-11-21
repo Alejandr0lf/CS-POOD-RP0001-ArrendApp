@@ -5,6 +5,7 @@ import java.util.Set;
 
 import ControlAPI.DBBuildingServices_Controller;
 import ControlAPI.DBUserCliente_Controller;
+import ControlAPI.DBUserComercial_Controller;
 import ControlAPI.DBUserUsers_Controller;
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
@@ -22,6 +23,7 @@ public class JakartaRestConfiguration extends Application {
         classes.add(DBUserCliente_Controller.class);
         classes.add(DBUserUsers_Controller.class);
         classes.add(DBBuildingServices_Controller.class);
+        classes.add(DBUserComercial_Controller.class);
         return classes;
     }
 }

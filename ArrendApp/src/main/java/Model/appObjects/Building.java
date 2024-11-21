@@ -1,7 +1,5 @@
 package Model.appObjects;
 
-import java.util.ArrayList;
-
 import Model.Tools.IdGenerator;
 import Model.User.User_Client;
 import Model.User.User_Comercial;
@@ -29,6 +27,23 @@ public class Building implements IdGenerator{
             boolean equiped, boolean hasCook, boolean includedServices, boolean available, Services services) {
         
         this.id = generateID();
+        this.landlord = landlord;
+        this.direction = direction;
+        this.levels = levels;
+        this.rooms = rooms;
+        this.bathrooms = bathrooms;
+        this.score = score;
+        this.equiped = equiped;
+        this.hasCook = hasCook;
+        this.includedServices = includedServices;
+        this.services = services;
+        this.available = available;
+    }
+
+    public Building(long id, User_Comercial landlord, Direction direction, int levels, int rooms, int bathrooms, int score,
+            boolean equiped, boolean hasCook, boolean includedServices, boolean available, Services services) {
+        
+        this.id = id;
         this.landlord = landlord;
         this.direction = direction;
         this.levels = levels;
@@ -159,5 +174,9 @@ public class Building implements IdGenerator{
 
     public void setServices(Services services) {
         this.services = services;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

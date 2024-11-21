@@ -41,6 +41,4 @@ public class User_Client extends User {
     public Request rentProperty(Building building) {
         return new Request(this, building);
     }
-
-    
 }

@@ -1,33 +1,42 @@
 package ControlAPI;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import DataBase.DBServices.UserComercialService;
+import Model.User.User;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 @Path("/comercial")
 public class DBUserComercial_Controller {
 
     // CORREGIR TODA ESTA MRD
 
-    // UserComercialService userService = new UserComercialService();
+    UserComercialService userService = new UserComercialService();
 
-    // @GET
-    // public Response ping() {
-    // return Response
-    // .ok("ping Jakarta EE")
-    // .build();
-    // }
+    @GET
+    public Response ping() {
+        return Response
+                .ok("ping Jakarta EE")
+                .build();
+    }
 
-    // @GET
-    // @Path("/seeAll")
-    // @Produces(MediaType.APPLICATION_JSON)
-    // public Response consulta() {
-    // List<User> user = new ArrayList<>();
-    // user = userService.consultar();
-    // return Response
-    // .status(200)
-    // .header("Access-Control-Allow-Origen", "*")
-    // .entity(user)
-    // .build();
-    // }
+    @GET
+    @Path("/check/All")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response consulta() {
+        List<User> user = new ArrayList<>();
+        user = userService.check();
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origen", "*")
+                .entity(user)
+                .build();
+    }
 
     // @POST
     // @Path("/upload")
