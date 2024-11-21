@@ -12,9 +12,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
-import Model.User.User;
 import DataBase.DBServices.*;
-import Model.User.User_Client;
 import Model.appObjects.Services;
 
 @Path("/services")

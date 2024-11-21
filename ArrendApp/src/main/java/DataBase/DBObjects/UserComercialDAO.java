@@ -50,6 +50,8 @@ public class UserComercialDAO {
             while (resultado.next()) {
                 long UserID = resultado.getLong("UserID");
                 long BuildingID = resultado.getLong("BuildingID");
+
+                //servicio de user(UserID) -> 
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
