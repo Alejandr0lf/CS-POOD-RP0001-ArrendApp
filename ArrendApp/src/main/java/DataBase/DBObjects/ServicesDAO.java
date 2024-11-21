@@ -122,11 +122,13 @@ public class ServicesDAO {
             con = DataBaseConnection.getConnection();
             ps = con.prepareStatement(SQLACTUALIZAR);
 
+            //
             ps.setBoolean(1, services.isWifi());
             ps.setBoolean(2, services.isWater());
             ps.setBoolean(3, services.isElectricity());
             ps.setBoolean(4, services.isAdministration());
             ps.setBoolean(5, services.isGas());
+            ps.setLong(6, services.getId());
             registros = ps.executeUpdate();
 
         } catch (SQLException ex) {
