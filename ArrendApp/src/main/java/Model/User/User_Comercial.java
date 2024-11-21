@@ -17,8 +17,10 @@ public class User_Comercial extends User {
         super(ID);
     }
 
-    public User_Comercial(int iD, String name, String lastname, String number, String email) {
+    public User_Comercial(int iD, String name, String lastname, String number, String email, ArrayList<Building> buildings) {
         super(iD, name, lastname, number, email);
+        this.buildings = buildings;
+        activeRentals = new ArrayList<>();
     }
     
 }

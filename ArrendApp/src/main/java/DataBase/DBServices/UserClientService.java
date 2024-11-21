@@ -9,23 +9,23 @@ import Model.User.User_Client;
 public class UserClientService {
     UserClientDAO userDAO = new UserClientDAO();
     
-    public List<User> consultar(){
-        return userDAO.consultar();
+    public List<User> check(){
+        return userDAO.check();
     }
 
-    public User_Client consultar(User_Client user){
-        return userDAO.consultarId(user);
+    public User_Client checkId(User_Client user){
+        return userDAO.checkId(user);
     }
 
     public int crear(User_Client user){
         return userDAO.create(user);
     }
 
-    // public int delete(User user){
-    //     return userDAO.delete(user);
-    // }
+    public int delete(User_Client user){
+        return userDAO.delete(user);
+    }
 
-    // public int update(User user){
-    //     return userDAO.update(user);
-    // }
+    public int update(User_Client user){
+        return userDAO.update(user);
+    }
 }

@@ -1,9 +1,10 @@
 package Model.appObjects;
 
 public class Services {
-    
+
+    private long id;
     private boolean wifi;
-    private boolean ater;
+    private boolean water;
     private boolean electricity;
     private boolean administration;
     private boolean gas;
@@ -11,9 +12,14 @@ public class Services {
     public Services() {
     }
 
-    public Services(boolean wifi, boolean ater, boolean electricity, boolean administration, boolean gas) {
+    public Services(long id){
+        this.id = id;
+    }
+
+    public Services(long id, boolean wifi, boolean water, boolean electricity, boolean administration, boolean gas) {
+        this.id = id;
         this.wifi = wifi;
-        this.ater = ater;
+        this.water = water;
         this.electricity = electricity;
         this.administration = administration;
         this.gas = gas;
@@ -27,12 +33,12 @@ public class Services {
         this.wifi = wifi;
     }
 
-    public boolean isAter() {
-        return ater;
+    public boolean isWater() {
+        return water;
     }
 
-    public void setAter(boolean ater) {
-        this.ater = ater;
+    public void setWater(boolean water) {
+        this.water = water;
     }
 
     public boolean isElectricity() {
@@ -59,5 +65,8 @@ public class Services {
         this.gas = gas;
     }
 
-    
+    public long getId() {
+        return id;
+    }
+
 }

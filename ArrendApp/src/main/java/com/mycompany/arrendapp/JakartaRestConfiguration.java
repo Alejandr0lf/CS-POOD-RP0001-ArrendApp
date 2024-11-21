@@ -3,6 +3,7 @@ package com.mycompany.arrendapp;
 import java.util.HashSet;
 import java.util.Set;
 
+import ControlAPI.DBBuildingServices_Controller;
 import ControlAPI.DBUserCliente_Controller;
 import ControlAPI.DBUserUsers_Controller;
 import jakarta.ws.rs.ApplicationPath;
@@ -20,6 +21,7 @@ public class JakartaRestConfiguration extends Application {
         classes.add(CorsFilter.class);
         classes.add(DBUserCliente_Controller.class);
         classes.add(DBUserUsers_Controller.class);
+        classes.add(DBBuildingServices_Controller.class);
         return classes;
     }
 }

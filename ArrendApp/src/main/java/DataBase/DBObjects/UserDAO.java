@@ -18,9 +18,8 @@ public class UserDAO {
     public static final String SQLDELETEID = "DELETE FROM DB_UserUsers WHERE id = (?)";
     public static final String SQLACTUALIZAR = "UPDATE DB_UserUsers SET name = ?, lastname = ?, phoneNumber = ?, email = ? WHERE ID = ?";
     public static final String SQLCONSULTA_ID = "SELECT u.name, u.lastname, u.ID, u.phoneNumber, u.email FROM DB_UserUsers u WHERE u.ID = ?";
-    // public static final String SQLBORRAR = "DELETE FROM vehicula WHERE id = ?";
 
-    public List<User> consultar() {
+    public List<User> check() {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet resultado = null;
@@ -46,7 +45,7 @@ public class UserDAO {
         return users;
     }
 
-    public User consultarId(User user) {
+    public User checkId(User user) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet resultado = null;

@@ -1,7 +1,10 @@
 package ControlAPI;
 
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -28,9 +31,9 @@ public class DBUserCliente_Controller {
     @GET
     @Path("/check/All")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response consulta() {
+    public Response check() {
         List<User> user = new ArrayList<>();
-        user = userService.consultar();
+        user = userService.check();
         return Response
                 .status(200)
                 .header("Access-Control-Allow-Origen", "*")
@@ -41,9 +44,9 @@ public class DBUserCliente_Controller {
     @GET
     @Path("/check/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response consultaID(@PathParam("id") String id) {
+    public Response checkID(@PathParam("id") String id) {
         User_Client userID = new User_Client(id);
-        User_Client userReturn = userService.consultar(userID);
+        User_Client userReturn = userService.checkId(userID);
         return Response
                 .status(200)
                 .entity(userReturn)
@@ -53,8 +56,7 @@ public class DBUserCliente_Controller {
     @POST
     @Path("/upload")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response crear(User_Client user) {
-        System.out.println("Controlador" + user);
+    public Response upload(User_Client user) {
         try {
             userService.crear(user);
             return Response
@@ -69,23 +71,42 @@ public class DBUserCliente_Controller {
         }
     }
 
-    // @DELETE
-    // @Path("/delete/{id}")
-    // @Produces(MediaType.APPLICATION_JSON)
-    // public Response borrar(@PathParam("id") String id) {
-    // User x = new User_Client(id);
-    // int i = userService.delete(x);
-    // if (i > 0) {
-    // return Response
-    // .ok("Correcto")
-    // .build();
-    // } else {
-    // return Response
-    // .status(Response.Status.BAD_REQUEST)
-    // .entity("Incorrecto")
-    // .build();
-    // }
-    // }
+    @DELETE
+    @Path("/delete/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response delete(@PathParam("id") String id) {
+        User_Client x = new User_Client(id);
+        int i = userService.delete(x);
+        if (i > 0) {
+            return Response
+                    .ok("Correcto")
+                    .build();
+        } else {
+            return Response
+                    .status(Response.Status.BAD_REQUEST)
+                    .entity("Incorrecto")
+                    .build();
+        }
+    }
+
+    @PUT
+    @Path("/update")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response update(User_Client user) {
+        try {
+            userService.update(user);
+            return Response
+                    .status(Response.Status.CREATED)
+                    .entity(user)
+                    .build();
+        } catch (Exception e) {
+            return Response
+                    .status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(e.getMessage())
+                    .build();
+        }
+    }
 
     // @PUT
     // @Path("/update")
@@ -106,18 +127,3 @@ public class DBUserCliente_Controller {
     // }
     // }
 }
-
-//
-// @GET
-// @Path("/vehiculoconsulta/{id}")
-// @Produces(MediaType.APPLICATION_JSON)
-// public Response consultaID(@PathParam("id") String id) {
-// Vehiculo vehiculo = new Vehiculo(id);
-// Vehiculo rVehiculo = vehiculoServices.consultarID(vehiculo);
-// return Response
-// .status(200)
-// .entity(rVehiculo)
-// .build();
-// }
-
-//

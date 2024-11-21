@@ -30,7 +30,7 @@ public class DBUserUsers_Controller {
     @Produces(MediaType.APPLICATION_JSON)
     public Response check() {
         List<User> user = new ArrayList<>();
-        user = userService.consultar();
+        user = userService.check();
         return Response
                 .status(200)
                 .header("Access-Control-Allow-Origen", "*")
@@ -43,7 +43,7 @@ public class DBUserUsers_Controller {
     @Produces(MediaType.APPLICATION_JSON)
     public Response checkID(@PathParam("id") String id) {
         User userID = new User_Client(id);
-        User userReturn = userService.consultar(userID);
+        User userReturn = userService.checkId(userID);
         return Response
                 .status(200)
                 .entity(userReturn)

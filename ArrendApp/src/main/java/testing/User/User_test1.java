@@ -39,7 +39,7 @@ public class User_test1 {
         User user = new User_Client(id, name, lastname, number, email);
 
         UserService add = new UserService();
-        add.crear(user);
+        add.create(user);
 
         scan.close();
     }

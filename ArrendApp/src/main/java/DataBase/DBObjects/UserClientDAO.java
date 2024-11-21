@@ -14,23 +14,20 @@ import Model.User.User;
 import Model.User.User_Client;
 
 public class UserClientDAO {
-    public static final String SQLCONSULTA = "SELECT u.ID, u.name, u.lastname, u.phoneNumber, u.email FROM DB_UserUsers u, DB_UserClient v WHERE u.ID = v.ID AND v.status";
-    public static final String SQLCONSULTA_ID = "SELECT  u.ID, u.name, u.lastname, u.phoneNumber, u.email FROM DB_UserUsers u, DB_UserClient v WHERE u.ID = v.ID AND v.ID = (?)";
+    public static final String SQLCHECKALL = "SELECT u.ID, u.name, u.lastname, u.phoneNumber, u.email FROM DB_UserUsers u, DB_UserClient v WHERE u.ID = v.ID AND v.status";
+    public static final String SQLCHECKID = "SELECT  u.ID, u.name, u.lastname, u.phoneNumber, u.email FROM DB_UserUsers u, DB_UserClient v WHERE u.ID = v.ID AND v.ID = (?)";
     public static final String SQLINSERT = "INSERT INTO DB_UserClient(ID) VALUE (?)";
+    public static final String SQLDELETE = "UPDATE DB_UserClient SET status = 0 WHERE ID = (?)";
+    public static final String SQLUPDATE = "UPDATE DB_UserUsers u JOIN DB_UserClient v ON u.ID = v.ID SET u.name = (?), u.lastname = (?), u.phoneNumber = (?), u.email = (?) WHERE v.ID = (?) AND v.status = TRUE";
 
-    public static final String SQLDELETEID = "DELETE FROM DB_UserUsers WHERE id = (?)";
-    public static final String SQLACTUALIZAR = "UPDATE DB_UserUsers SET name = ?, lastname = ?, phoneNumber = ?, email = ? WHERE ID = ?";
-
-    // public static final String SQLBORRAR = "DELETE FROM vehicula WHERE id = ?";
-
-    public List<User> consultar() {
+    public List<User> check() {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet resultado = null;
         List<User> users = new ArrayList<>();
         try {
             con = DataBaseConnection.getConnection();
-            ps = con.prepareStatement(SQLCONSULTA);
+            ps = con.prepareStatement(SQLCHECKALL);
             resultado = ps.executeQuery();
             while (resultado.next()) {
                 String nombre = resultado.getString("name");
@@ -49,14 +46,14 @@ public class UserClientDAO {
         return users;
     }
 
-    public User_Client consultarId(User_Client user) {
+    public User_Client checkId(User_Client user) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet resultado = null;
         User_Client x = null;
         try {
             con = DataBaseConnection.getConnection();
-            ps = con.prepareStatement(SQLCONSULTA_ID, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.TYPE_FORWARD_ONLY);
+            ps = con.prepareStatement(SQLCHECKID, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.TYPE_FORWARD_ONLY);
             ps.setLong(1, user.getId());
             resultado = ps.executeQuery();
             resultado.absolute(1);
@@ -83,7 +80,7 @@ public class UserClientDAO {
         System.out.println(user);
         try {
             UserService service = new UserService();
-            service.crear(user);
+            service.create(user);
             con = DataBaseConnection.getConnection();
             ps = con.prepareStatement(SQLINSERT);
             ps.setLong(1, user.getId());
@@ -96,44 +93,44 @@ public class UserClientDAO {
         return registros;
     }
 
-    // public int delete(User user) {
-    // Connection con = null;
-    // PreparedStatement ps = null;
-    // int registros = 0;
-    // try {
-    // con = DataBaseConnection.getConnection();
-    // ps = con.prepareStatement(SQLDELETEID);
-    // ps.setLong(1, user.getId());
-    // registros = ps.executeUpdate();
-    // } catch (SQLException ex) {
-    // Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-    // } catch (ClassNotFoundException ex) {
-    // Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-    // }
-    // return registros;
-    // }
+    public int delete(User_Client user) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        int registros = 0;
+        try {
+            con = DataBaseConnection.getConnection();
+            ps = con.prepareStatement(SQLDELETE);
+            ps.setLong(1, user.getId());
+            registros = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return registros;
+    }
 
-    // public int update(User user) {
-    // Connection con = null;
-    // PreparedStatement ps = null;
-    // int registros = 0;
+    public int update(User_Client user) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        int registros = 0;
+        try {
+            con = DataBaseConnection.getConnection();
+            ps = con.prepareStatement(SQLUPDATE);
 
-    // try {
-    // con = DataBaseConnection.getConnection();
-    // ps = con.prepareStatement(SQLACTUALIZAR);
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getLastname());
+            ps.setString(3, user.getphoneNumber());
+            ps.setString(4, user.getEmail());
+            ps.setLong(5, user.getId());
 
-    // ps.setString(1, user.getName());
-    // ps.setString(2, user.getLastname());
-    // ps.setString(3, user.getNumber());
-    // ps.setString(4, user.getEmail());
-    // ps.setLong(5, user.getId());
-    // registros = ps.executeUpdate();
+            registros = ps.executeUpdate();
 
-    // } catch (SQLException ex) {
-    // Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-    // } catch (ClassNotFoundException ex) {
-    // Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-    // }
-    // return registros;
-    // }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return registros;
+    }
 }

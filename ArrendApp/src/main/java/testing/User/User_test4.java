@@ -10,7 +10,7 @@ public class User_test4 {
     public static void main(String[] args) {
 
         UserService newService = new UserService();
-        for (User u : newService.consultar()) {
+        for (User u : newService.check()) {
             System.out.println(u + "\n");
         }
     }

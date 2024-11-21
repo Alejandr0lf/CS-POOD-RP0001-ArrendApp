@@ -19,7 +19,7 @@ public class User_test5 {
 
         User_Client u = new User_Client(ID);
 
-        System.out.println(newService.consultar(u));
+        System.out.println(newService.checkId(u));
 
         scan.close();
     }

@@ -7,15 +7,15 @@ import Model.User.User;
 public class UserService {
     UserDAO userDAO = new UserDAO();
     
-    public List<User> consultar(){
-        return userDAO.consultar();
+    public List<User> check(){
+        return userDAO.check();
     }
 
-    public User consultar(User user){
-        return userDAO.consultarId(user);
+    public User checkId(User user){
+        return userDAO.checkId(user);
     }
 
-    public int crear(User user){
+    public int create(User user){
         return userDAO.create(user);
     }
 

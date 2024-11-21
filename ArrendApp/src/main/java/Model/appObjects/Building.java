@@ -1,12 +1,14 @@
 package Model.appObjects;
 
 import java.util.ArrayList;
+
+import Model.Tools.IdGenerator;
 import Model.User.User_Client;
 import Model.User.User_Comercial;
 
-public class Building {
+public class Building implements IdGenerator{
 
-    private int id;
+    private long id;
     private User_Comercial landlord;
     private Direction direction;
     private int levels;
@@ -17,18 +19,16 @@ public class Building {
     private boolean hasCook;
     private boolean includedServices;
     private Services services;
-    private ArrayList<User_Client> AllTenants;
     private boolean available;
 
     public Building() {
     }
 
     // Constructor
-    public Building(int id, User_Comercial landlord, Direction direction, int levels, int rooms, int bathrooms, int score,
-            boolean equiped, boolean hasCook, boolean includedServices, boolean available, boolean wifi, boolean water,
-            boolean electricity, boolean gas, boolean administration) {
+    public Building(User_Comercial landlord, Direction direction, int levels, int rooms, int bathrooms, int score,
+            boolean equiped, boolean hasCook, boolean includedServices, boolean available, Services services) {
         
-        this.id = id;
+        this.id = generateID();
         this.landlord = landlord;
         this.direction = direction;
         this.levels = levels;
@@ -38,8 +38,7 @@ public class Building {
         this.equiped = equiped;
         this.hasCook = hasCook;
         this.includedServices = includedServices;
-        this.services = new Services(wifi, water, electricity, administration, gas);
-        this.AllTenants = new ArrayList<>();
+        this.services = services;
         this.available = available;
     }
 
@@ -142,14 +141,6 @@ public class Building {
         this.includedServices = includedServices;
     }
 
-    public ArrayList<User_Client> getAllTenants() {
-        return AllTenants;
-    }
-
-    public void setAllTenants(ArrayList<User_Client> allTenants) {
-        AllTenants = allTenants;
-    }
-
     public boolean isAvailable() {
         return available;
     }
@@ -158,7 +149,7 @@ public class Building {
         this.available = available;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

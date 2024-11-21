@@ -8,9 +8,9 @@ import Model.appObjects.Building;
 public class BuildingService {
     BuildingDAO buildingDAO = new BuildingDAO();
 
-    public List<Building> consultar() {
-        return buildingDAO.consultar();
-    }
+    // public List<Building> consultar() {
+    //     return buildingDAO.consultar();
+    // }
 
     // public int crear(User user) {
     // return buildingDAO.create(user);
