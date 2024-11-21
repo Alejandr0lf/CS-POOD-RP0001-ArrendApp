@@ -18,8 +18,8 @@ public class User_Client extends User {
     public User_Client() {
     }
 
-    public User_Client(String ID){
-        super(ID);
+    public User_Client(String id){
+        super(id);
     }
 
     public User_Client(long id, String name, String lastname, String phoneNumber, String email) {

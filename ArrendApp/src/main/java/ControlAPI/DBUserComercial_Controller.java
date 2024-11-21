@@ -29,6 +29,7 @@ public class DBUserComercial_Controller {
     @Path("/check/All")
     @Produces(MediaType.APPLICATION_JSON)
     public Response consulta() {
+        System.out.println("Hola...");
         List<User> user = new ArrayList<>();
         user = userService.check();
         return Response

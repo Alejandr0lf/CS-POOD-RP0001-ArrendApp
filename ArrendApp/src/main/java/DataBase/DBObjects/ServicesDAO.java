@@ -55,7 +55,7 @@ public class ServicesDAO {
         try {
             con = DataBaseConnection.getConnection();
             ps = con.prepareStatement(SQLCONSULTA_ID, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.TYPE_FORWARD_ONLY);
-            ps.setLong(1, s.getId_s());
+            ps.setLong(1, s.getServiceId());
             resultado = ps.executeQuery();
             resultado.absolute(1);
             long id = resultado.getLong("ID");
@@ -81,7 +81,7 @@ public class ServicesDAO {
         try {
             con = DataBaseConnection.getConnection();
             ps = con.prepareStatement(SQLINSERT);
-            ps.setLong(1, services.getId_s());
+            ps.setLong(1, services.getServiceId());
             ps.setBoolean(2, services.isWifi());
             ps.setBoolean(3, services.isWater());
             ps.setBoolean(4, services.isElectricity());
@@ -103,7 +103,7 @@ public class ServicesDAO {
         try {
             con = DataBaseConnection.getConnection();
             ps = con.prepareStatement(SQLDELETEID);
-            ps.setLong(1, services.getId_s());
+            ps.setLong(1, services.getServiceId());
             registros = ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,7 +126,7 @@ public class ServicesDAO {
             ps.setBoolean(3, services.isElectricity());
             ps.setBoolean(4, services.isAdministration());
             ps.setBoolean(5, services.isGas());
-            ps.setLong(6, services.getId_s());
+            ps.setLong(6, services.getServiceId());
             registros = ps.executeUpdate();
 
         } catch (SQLException ex) {

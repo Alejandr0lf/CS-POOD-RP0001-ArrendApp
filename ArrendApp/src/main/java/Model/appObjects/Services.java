@@ -2,7 +2,7 @@ package Model.appObjects;
 
 public class Services {
 
-    private long id_s;
+    private long serviceId;
     private boolean wifi;
     private boolean water;
     private boolean electricity;
@@ -12,12 +12,12 @@ public class Services {
     public Services() {
     }
 
-    public Services(long id_s){
-        this.id_s = id_s;
+    public Services(long serviceId){
+        this.serviceId = serviceId;
     }
 
-    public Services(long id_s, boolean wifi, boolean water, boolean electricity, boolean administration, boolean gas) {
-        this.id_s = id_s;
+    public Services(long serviceId, boolean wifi, boolean water, boolean electricity, boolean administration, boolean gas) {
+        this.serviceId = serviceId;
         this.wifi = wifi;
         this.water = water;
         this.electricity = electricity;
@@ -65,11 +65,11 @@ public class Services {
         this.gas = gas;
     }
 
-    public long getId_s() {
-        return id_s;
+    public long getServiceId() {
+        return serviceId;
     }
 
-    public void setId_s(long id_s) {
-        this.id_s = id_s;
+    public void setServiceId(long serviceId) {
+        this.serviceId = serviceId;
     }
 }

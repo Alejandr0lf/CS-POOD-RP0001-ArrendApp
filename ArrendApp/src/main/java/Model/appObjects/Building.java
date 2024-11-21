@@ -6,7 +6,7 @@ import Model.User.User_Comercial;
 
 public class Building implements IdGenerator{
 
-    private long id;
+    private long buildingId;
     private User_Comercial landlord;
     private Direction direction;
     private int levels;
@@ -26,7 +26,7 @@ public class Building implements IdGenerator{
     public Building(User_Comercial landlord, Direction direction, int levels, int rooms, int bathrooms, int score,
             boolean equiped, boolean hasCook, boolean includedServices, boolean available, Services services) {
         
-        this.id = generateID();
+        this.buildingId = generateID();
         this.landlord = landlord;
         this.direction = direction;
         this.levels = levels;
@@ -40,10 +40,10 @@ public class Building implements IdGenerator{
         this.available = available;
     }
 
-    public Building(long id, User_Comercial landlord, Direction direction, int levels, int rooms, int bathrooms, int score,
+    public Building(long buildingId, User_Comercial landlord, Direction direction, int levels, int rooms, int bathrooms, int score,
             boolean equiped, boolean hasCook, boolean includedServices, boolean available, Services services) {
         
-        this.id = id;
+        this.buildingId = buildingId;
         this.landlord = landlord;
         this.direction = direction;
         this.levels = levels;
@@ -164,10 +164,6 @@ public class Building implements IdGenerator{
         this.available = available;
     }
 
-    public long getId() {
-        return id;
-    }
-
     public Services getServices() {
         return services;
     }
@@ -176,7 +172,11 @@ public class Building implements IdGenerator{
         this.services = services;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public long getBuildingId() {
+        return buildingId;
+    }
+
+    public void setBuildingId(long buildingId) {
+        this.buildingId = buildingId;
     }
 }
