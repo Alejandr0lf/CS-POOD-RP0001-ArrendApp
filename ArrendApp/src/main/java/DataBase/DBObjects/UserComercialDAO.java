@@ -13,10 +13,8 @@ import DataBase.DBServices.UserService;
 import Model.User.User_Comercial;
 
 public class UserComercialDAO {
-    public static final String SQLCHECKALL = "SELECT uc.ID as comercialID, uu.name, uu.lastName, uu.phoneNumber, uu.email"
-            + "FROM DB_UserUsers uu, DB_UserComercial uc WHERE uu.ID = uc.ID AND uc.status";
-    public static final String SQLCHECKID = "SELECT uc.ID as comercialID, uu.name, uu.lastName, uu.phoneNumber, uu.email"
-            + "FROM DB_UserUsers uu, DB_UserComercial uc WHERE uu.ID = uc.ID AND uc.ID = (?) AND uc.status";
+    public static final String SQLCHECKALL = "SELECT uc.ID as comercialID, uu.name, uu.lastName, uu.phoneNumber, uu.email FROM DB_UserUsers uu, DB_UserComercial uc WHERE uu.ID = uc.ID AND uc.status";
+    public static final String SQLCHECKID = "SELECT uc.ID as comercialID, uu.name, uu.lastName, uu.phoneNumber, uu.email FROM DB_UserUsers uu, DB_UserComercial uc WHERE uu.ID = uc.ID AND uc.ID = (?) AND uc.status";
     public static final String SQLINSERT = "INSERT INTO DB_UserComercial(ID) VALUE (?)";
     public static final String SQLDELETE = "UPDATE DB_UserComercial SET status = 0 WHERE ID = (?)";
     public static final String SQLUPDATE = "UPDATE DB_UserUsers u JOIN DB_UserComercial v ON u.ID = v.ID SET u.name = (?), u.lastname = (?), u.phoneNumber = (?), u.email = (?) WHERE v.ID = (?) AND v.status = TRUE";
