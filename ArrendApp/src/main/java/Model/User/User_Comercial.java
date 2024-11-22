@@ -16,6 +16,13 @@ public class User_Comercial extends User {
         super(ID);
     }
 
+    public User_Comercial(long iD, String name, String lastname, String phoneNumber, String email,
+            ArrayList<Building> buildings, ArrayList<Rent> activeRentals) {
+        super(iD, name, lastname, phoneNumber, email);
+        this.buildings = new ArrayList<>();
+        this.activeRentals = new ArrayList<>();
+    }
+
     public User_Comercial(int iD, String name, String lastname, String number, String email) {
         super(iD, name, lastname, number, email);
         this.buildings = new ArrayList<>();

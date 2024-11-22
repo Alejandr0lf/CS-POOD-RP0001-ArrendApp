@@ -10,6 +10,10 @@ public class Direction {
     public Direction() {
     }
 
+    public Direction(String coordinates) {
+        this.coordinates = coordinates;
+    }
+
     public Direction(String adress, String coordinates, String neighborhood, String city) {
         this.adress = adress;
         this.coordinates = coordinates;

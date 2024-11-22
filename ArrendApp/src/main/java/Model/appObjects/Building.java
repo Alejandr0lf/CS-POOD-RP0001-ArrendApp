@@ -22,7 +22,10 @@ public class Building implements IdGenerator{
     public Building() {
     }
 
-    // Constructor
+    public Building(long buildingID){
+        this.buildingId = buildingID;
+    }
+
     public Building(User_Comercial landlord, Direction direction, int levels, int rooms, int bathrooms, int score,
             boolean equiped, boolean hasCook, boolean includedServices, boolean available, Services services) {
         
@@ -178,5 +181,13 @@ public class Building implements IdGenerator{
 
     public void setBuildingId(long buildingId) {
         this.buildingId = buildingId;
+    }
+
+    @Override
+    public String toString() {
+        return "Building [buildingId=" + buildingId + ", landlord=" + landlord + ", direction=" + direction
+                + ", levels=" + levels + ", rooms=" + rooms + ", bathrooms=" + bathrooms + ", score=" + score
+                + ", equiped=" + equiped + ", hasCook=" + hasCook + ", includedServices=" + includedServices
+                + ", services=" + services + ", available=" + available + "]";
     }
 }

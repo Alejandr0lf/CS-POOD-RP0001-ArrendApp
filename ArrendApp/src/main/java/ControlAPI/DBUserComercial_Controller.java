@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DataBase.DBServices.UserComercialService;
-import Model.User.User;
+import Model.User.User_Comercial;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -18,7 +23,7 @@ public class DBUserComercial_Controller {
 
     UserComercialService userService = new UserComercialService();
 
-    @GET
+   @GET
     public Response ping() {
         return Response
                 .ok("ping Jakarta EE")
@@ -28,9 +33,8 @@ public class DBUserComercial_Controller {
     @GET
     @Path("/check/All")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response consulta() {
-        System.out.println("Hola...");
-        List<User> user = new ArrayList<>();
+    public Response check() {
+        List<User_Comercial> user = new ArrayList<>();
         user = userService.check();
         return Response
                 .status(200)
@@ -39,73 +43,70 @@ public class DBUserComercial_Controller {
                 .build();
     }
 
-    // @POST
-    // @Path("/upload")
-    // @Produces(MediaType.APPLICATION_JSON)
-    // public Response crear(User_Client user) {
-    // try {
-    // userClientService.crear(user);
-    // return Response
-    // .status(Response.Status.CREATED)
-    // .entity(user)
-    // .build();
-    // } catch (Exception e) {
-    // return Response
-    // .status(Response.Status.INTERNAL_SERVER_ERROR)
-    // .entity(e.getMessage())
-    // .build();
-    // }
-    // }
+    @GET
+    @Path("/check/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response checkID(@PathParam("id") String id) {
+        User_Comercial userID = new User_Comercial(id);
+        User_Comercial userReturn = userService.checkId(userID);
+        return Response
+                .status(200)
+                .entity(userReturn)
+                .build();
+    }
 
-    // @DELETE
-    // @Path("/delete/{id}")
-    // @Produces(MediaType.APPLICATION_JSON)
-    // public Response borrar(@PathParam("id") String id) {
-    // User x = new User_Client(id);
-    // int i = userService.delete(x);
-    // if (i > 0) {
-    // return Response
-    // .ok("Correcto")
-    // .build();
-    // } else {
-    // return Response
-    // .status(Response.Status.BAD_REQUEST)
-    // .entity("Incorrecto")
-    // .build();
-    // }
-    // }
+    @POST
+    @Path("/upload")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response upload(User_Comercial user) {
+        try {
+            userService.create(user);
+            return Response
+                    .status(Response.Status.CREATED)
+                    .entity(user)
+                    .build();
+        } catch (Exception e) {
+            return Response
+                    .status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(e.getMessage())
+                    .build();
+        }
+    }
 
-    // @PUT
-    // @Path("/update")
-    // @Produces(MediaType.APPLICATION_JSON)
-    // @Consumes(MediaType.APPLICATION_JSON)
-    // public Response actualizar(User user) {
-    // try {
-    // userService.update(user);
-    // return Response
-    // .status(Response.Status.CREATED)
-    // .entity(user)
-    // .build();
-    // } catch (Exception e) {
-    // return Response
-    // .status(Response.Status.INTERNAL_SERVER_ERROR)
-    // .entity(e.getMessage())
-    // .build();
-    // }
-    // }
-    // }
+    @DELETE
+    @Path("/delete/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response delete(@PathParam("id") String id) {
+        User_Comercial x = new User_Comercial(id);
+        int i = userService.delete(x);
+        if (i > 0) {
+            return Response
+                    .ok("Correcto")
+                    .build();
+        } else {
+            return Response
+                    .status(Response.Status.BAD_REQUEST)
+                    .entity("Incorrecto")
+                    .build();
+        }
+    }
 
-    //
-    // @GET
-    // @Path("/vehiculoconsulta/{id}")
-    // @Produces(MediaType.APPLICATION_JSON)
-    // public Response consultaID(@PathParam("id") String id) {
-    // Vehiculo vehiculo = new Vehiculo(id);
-    // Vehiculo rVehiculo = vehiculoServices.consultarID(vehiculo);
-    // return Response
-    // .status(200)
-    // .entity(rVehiculo)
-    // .build();
-    // }
-
+    @PUT
+    @Path("/update")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response update(User_Comercial user) {
+        try {
+            userService.update(user);
+            return Response
+                    .status(Response.Status.CREATED)
+                    .entity(user)
+                    .build();
+        } catch (Exception e) {
+            return Response
+                    .status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(e.getMessage())
+                    .build();
+        }
+    }
 }

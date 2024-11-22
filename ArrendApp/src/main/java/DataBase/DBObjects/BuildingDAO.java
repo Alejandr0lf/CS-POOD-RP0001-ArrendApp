@@ -1,11 +1,34 @@
 package DataBase.DBObjects;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import DataBase.Connection.DataBaseConnection;
+import DataBase.DBServices.DirectionService;
+import DataBase.DBServices.ServicesService;
+import DataBase.DBServices.UserComercialService;
+import Model.User.User_Comercial;
+import Model.appObjects.Building;
+import Model.appObjects.Direction;
+import Model.appObjects.Services;
+
 public class BuildingDAO {
-    public static final String SQLCHECK = "SELECT ub.ID as BuildingID, ub.landlord, ub.levels, ub.rooms, ub.bathrooms, ub.score, ub.equiped, ub.hasCook, ub.includedServices, ub.services, ub.available, ub.direction, "
-            + "bs.ID as ServiceID, bs.wifi, bs.water, bs.electricity, bs.gas, bs.administration, "
-            + "bd.adress, bd.coordinates, bd.neighborhood, bd.city, uc.ID as UserID, uc.building "
-            + "FROM DB_UserBuildings ub, DB_BuildingsServices bs, DB_BuildingDirection bd, DB_UserComercial uc"
-            + "WHERE ub.landlord = uc.ID AND ub.services = bs.ID AND ub.direction = bd.adress;";
+    public static final String SQLCHECK = "SELECT ub.ID as buildingID, ub.landlord, ub.levels, ub.rooms, ub.bathrooms, ub.score, ub.equiped, ub.hasCook, ub.includedServices, ub.available,bd.adress, bd.coordinates, bd.neighborhood, bd.city,uu.name, uu.lastName, uu.phoneNumber, uu.email FROM DB_UserBuildings ub, DB_BuildingsServices bs, DB_BuildingDirection bd, DB_UserComercial uc, DB_UserUsers uu WHERE uu.ID = uc.ID AND ub.services = bs.ID AND ub.direction = bd.coordinates AND uc.ID = ub.landlord";
+
+            //Primero creamos el servicio con el id del Building
+            //Después creamos la dirección con las coordenadas del Building
+            //Podemos crear el Building -> null
+            //ServicioCrearUsuarioComercial() -> x
+            //Building.setLandlord(x)
+
+            //ServiceComercial -> búsque -> landlord RETURN UserComercial
+            //New Building(ID, lanlord....);
+
 
     // public static final String SQLINSERT = "INSERT INTO DB_UserClient(ID, name,
     // lastname, phoneNumber, email) VALUES (?, ?, ?, ?, ?)";
@@ -23,71 +46,55 @@ public class BuildingDAO {
     // v INNER JOIN marca m ON v.id_marca = m.id WHERE v.id = ?";
     // public static final String SQLBORRAR = "DELETE FROM vehicula WHERE id = ?";
 
-    // public List<Building> consultar() {
-    //     Connection con = null;
-    //     PreparedStatement ps = null;
-    //     ResultSet result = null;
-    //     List<Building> buildings = new ArrayList<>();
-    //     try {
-    //         con = DataBaseConnection.getConnection();
-    //         ps = con.prepareStatement(SQLCHECK);
-    //         result = ps.executeQuery();
-    //         while (result.next()) {
+    public List<Building> check() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet result = null;
+        List<Building> buildings = new ArrayList<>();
+        try {
+            con = DataBaseConnection.getConnection();
+            ps = con.prepareStatement(SQLCHECK);
+            result = ps.executeQuery();
+            while (result.next()) {
 
-    //             // Esto es para crearla
-    //             // Traer datos del servicio -> crear el servicio
-    //             // Traer datos de la dirección -> Crear dirección
-    //             // Crear el UserCliente con propidad en null
-    //             // Crear el Building con Propietario
-    //             // Seterar la propiedad del User_Comercial
-    //             // Usar el ServiceCreate(X) para User_Comercial y para la Propiedad
+                /* ---------------------------- crear el Servicio --------------------------- */
+                ServicesService srv = new ServicesService();
+                Services serv = new Services(result.getLong("buildingID"));
+                Services service = srv.checkId(serv);
 
-    //             /* ---------------------------- crear el Servicio --------------------------- */
-    //             boolean wifi = result.getBoolean("wifi");
-    //             boolean water = result.getBoolean("water");
-    //             boolean eletricity = result.getBoolean("electricity");
-    //             boolean administration = result.getBoolean("administration");
-    //             boolean gas = result.getBoolean("gas");
-    //             Services service = new Services(result.getLong("BuildingID"), wifi, water, eletricity, administration,
-    //                     gas);
+                /* --------------------------- crear la direccion --------------------------- */
+                DirectionService drt = new DirectionService();
+                Direction dirt = new Direction(result.getString("coordinates"));
+                Direction direction = drt.checkId(dirt);
 
-    //             /* --------------------------- crear la direccion --------------------------- */
-    //             String adress = result.getString("adress");
-    //             String coordinates = result.getString("coordinates");
-    //             String neighborhood = result.getString("neighborhood");
-    //             String city = result.getString("city");
-    //             Direction direction = new Direction(adress, coordinates, neighborhood, city);
+                /* -------------------------- crear user comercial -------------------------- */
+                User_Comercial dbUser = new User_Comercial(String.valueOf(result.getLong("landlord")));
+                UserComercialService cService = new UserComercialService();
+                User_Comercial comercial = cService.checkId(dbUser);
 
-    //             /* -------------------------- crear user comercial -------------------------- */
-    //             User_Comercial dbUser = new User_Comercial(String.valueOf(result.getLong("landlord")));
-    //             UserComercialService cService = new UserComercialService(); // funcionará cuando UserComercialService
-    //                                                                         // esté creado
-    //             User_Comercial comercial = cService.checkId(dbUser);
+                // /* ---------------------------- Crear el building --------------------------- */
+                long id = result.getLong("BuildingID");
+                int levels = result.getInt("levels");
+                int rooms = result.getInt("rooms");
+                int bathrooms = result.getInt("bathrooms");
+                int score = result.getInt("score");
+                boolean equiped = result.getBoolean("equiped");
+                boolean hasCook = result.getBoolean("hasCook");
+                boolean includedServices = result.getBoolean("includedServices");
+                boolean available = result.getBoolean("available");
 
-    //             /* ---------------------------- Crear el building --------------------------- */
-    //             long id = result.getLong("BuildingID");
-    //             int levels = result.getInt("levels");
-    //             int rooms = result.getInt("rooms");
-    //             int bathrooms = result.getInt("bathrooms");
-    //             int score = result.getInt("score");
-    //             boolean equiped = result.getBoolean("equiped");
-    //             boolean hasCook = result.getBoolean("hasCook");
-    //             boolean includedServices = result.getBoolean("includedServices");
-    //             boolean available = result.getBoolean("available");
+                Building building = new Building(id, comercial, direction, levels, rooms, bathrooms, score, equiped,
+                        hasCook, includedServices, available, service);
 
-    //             Building building = new Building(comercial, direction, levels, rooms, bathrooms, score, equiped,
-    //                     hasCook, includedServices, available, service);
-
-    //             buildings.add(building);
-
-    //         }
-    //     } catch (SQLException ex) {
-    //         Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
-    //     } catch (ClassNotFoundException ex) {
-    //         Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
-    //     }
-    //     return buildings;
-    // }
+                buildings.add(building);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return buildings;
+    }
 
     // public int create(User user) {
     // Connection con = null;

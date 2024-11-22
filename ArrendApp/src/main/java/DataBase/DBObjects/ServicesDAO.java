@@ -124,8 +124,8 @@ public class ServicesDAO {
             ps.setBoolean(1, services.isWifi());
             ps.setBoolean(2, services.isWater());
             ps.setBoolean(3, services.isElectricity());
-            ps.setBoolean(4, services.isAdministration());
-            ps.setBoolean(5, services.isGas());
+            ps.setBoolean(4, services.isGas());
+            ps.setBoolean(5, services.isAdministration());
             ps.setLong(6, services.getServiceId());
             registros = ps.executeUpdate();
 

@@ -1,0 +1,31 @@
+[33mb7d4b63[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m Sirvió malparide
+[33mc514219[m[33m ([m[1;31morigin/master[m[33m)[m Excelente
+[33m39ce1d9[m Temperamento negativo y asesino UwU
+[33m0be98ea[m Agradecido con buda
+[33m0798ae3[m Holap
+[33mb9a2252[m[33m ([m[1;31morigin/Gabriel[m[33m, [m[1;32mGabriel[m[33m)[m fixing problems
+[33m0c56575[m perro
+[33m0abdc75[m Adding setter
+[33m73917d7[m uptado
+[33mfd3dad0[m Hola
+[33m0c7b2e8[m gg
+[33mf93798d[m Adding new some classes
+[33mc8012ab[m I've added a new method that will consult by ID in the DBUserUsers controller, and that is working. I've finished with the local testing classes for User, and all the methods works correctly
+[33m6bb4eb3[m The problem with the empty JSON has been resolved, it's important to consider UserDAO, inside the 'Consultar' method, will return every entity like a Java User_Client object, because User object is abstract and can't be instanced
+[33m024d4e9[m Adding the connect objects for Building
+[33m647e6c3[m Adding some changes
+[33mfaafd3d[m Hola
+[33mdace57b[m adding
+[33m003faf6[m Adding a lot of changes and editions
+[33m7a3b65b[m v3
+[33m79d62d7[m Adding a lot of changes, adjusting the database, fixing some objects and reimagining the structure of the project
+[33m3f8ddee[m Updating
+[33mc29c0c0[m[33m ([m[1;32mIngDaniel[m[33m)[m Changes from master
+[33m94d3c79[m test
+[33m8bc7ec1[m changing  the type for the variable code from PhoneNumber class
+[33me147f58[m adding some changes
+[33m92a2018[m Adding the rest of the vital classes for the app objects with new packager
+[33m9deb6b2[m Adding some fixes on the UserClass
+[33m5cb0b15[m creating User class and a String Tool with a new Package
+[33mce7d6d1[m Adding new packages
+[33m9f68862[m Web App project created

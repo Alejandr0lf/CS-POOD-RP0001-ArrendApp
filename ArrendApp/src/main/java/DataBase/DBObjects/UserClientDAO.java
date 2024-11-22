@@ -77,7 +77,6 @@ public class UserClientDAO {
         Connection con = null;
         PreparedStatement ps = null;
         int registros = 0;
-        System.out.println(user);
         try {
             UserService service = new UserService();
             service.create(user);
