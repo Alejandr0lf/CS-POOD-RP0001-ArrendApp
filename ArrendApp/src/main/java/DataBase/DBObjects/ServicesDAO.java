@@ -13,11 +13,19 @@ import Model.appObjects.Services;
 
 public class ServicesDAO {
 
-    public static final String SQLCONSULTA = "SELECT bs.ID, bs.wifi, bs.water, bs.electricity, bs.gas, bs.administration FROM DB_BuildingsServices bs;";
-    public static final String SQLCONSULTA_ID = "SELECT bs.ID, bs.wifi, bs.water, bs.electricity, bs.gas, bs.administration FROM DB_BuildingsServices bs WHERE bs.ID = ?";
-    public static final String SQLINSERT = "INSERT INTO DB_BuildingsServices (ID, wifi, water, electricity, gas, administration) VALUES (?,?,?,?,?,?)";
+    public static final String SQLCONSULTA = "SELECT bs.ID, bs.wifi, bs.water, bs.electricity, bs.gas, bs.administration"
+            + " FROM DB_BuildingsServices bs;";
+
+    public static final String SQLCONSULTA_ID = "SELECT bs.ID, bs.wifi, bs.water, bs.electricity, bs.gas, bs.administration"
+            + " FROM DB_BuildingsServices bs WHERE bs.ID = ?";
+
+    public static final String SQLINSERT = "INSERT INTO DB_BuildingsServices (ID, wifi, water, electricity, gas, administration)"
+            + " VALUES (?,?,?,?,?,?)";
+
     public static final String SQLDELETEID = "DELETE FROM DB_BuildingsServices WHERE id = (?)";
-    public static final String SQLACTUALIZAR = "UPDATE DB_BuildingsServices SET wifi = ?, water = ?, electricity = ?, gas = ?, administration = ? WHERE ID = ?";
+
+    public static final String SQLACTUALIZAR = "UPDATE DB_BuildingsServices SET "
+            + "wifi = ?, water = ?, electricity = ?, gas = ?, administration = ? WHERE ID = ?";
 
     public List<Services> check() {
         Connection con = null;
@@ -96,7 +104,7 @@ public class ServicesDAO {
         return registros;
     }
 
-    public int delete(Services  services) {
+    public int delete(Services services) {
         Connection con = null;
         PreparedStatement ps = null;
         int registros = 0;
