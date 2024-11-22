@@ -19,11 +19,7 @@ import Model.appObjects.Services;
 
 public class BuildingDAO {
 
-    public static final String SQLCHECK = "SELECT ub.ID as buildingID, ub.landlord, ub.levels, ub.rooms, ub.bathrooms, ub.score, ub.equiped, ub.hasCook, ub.includedServices, ub.available,"
-            + "bd.adress, bd.coordinates, bd.neighborhood, bd.city,uu.name,"
-            + "uu.lastName, uu.phoneNumber, uu.email"
-            + "FROM DB_UserBuildings ub, DB_BuildingsServices bs, DB_BuildingDirection bd, DB_UserComercial uc, DB_UserUsers uu"
-            + "WHERE uu.ID = uc.ID AND ub.services = bs.ID AND ub.direction = bd.coordinates AND uc.ID = ub.landlord";
+    public static final String SQLCHECK = "SELECT ub.ID as buildingID, ub.landlord, ub.levels, ub.rooms, ub.bathrooms, ub.score, ub.equiped, ub.hasCook, ub.includedServices, ub.available, bd.adress, bd.coordinates, bd.neighborhood, bd.city,uu.name, uu.lastName, uu.phoneNumber, uu.email FROM DB_UserBuildings ub, DB_BuildingsServices bs, DB_BuildingDirection bd, DB_UserComercial uc, DB_UserUsers uu WHERE uu.ID = uc.ID AND ub.services = bs.ID AND ub.direction = bd.coordinates AND uc.ID = ub.landlord";
 
     public List<Building> check() {
         Connection con = null;
