@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import DataBase.Connection.DataBaseConnection;
 import Model.User.User;
 import Model.User.User_Client;
@@ -41,6 +42,15 @@ public class UserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(resultado);
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
         }
         return users;
     }
@@ -67,6 +77,15 @@ public class UserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(resultado);
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
         }
         return x;
 
@@ -89,6 +108,14 @@ public class UserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
         }
         return registros;
     }
@@ -106,6 +133,14 @@ public class UserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
         }
         return registros;
     }
@@ -130,6 +165,14 @@ public class UserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
         }
         return registros;
     }

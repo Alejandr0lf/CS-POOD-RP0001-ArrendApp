@@ -1,6 +1,8 @@
 package DataBase.Connection;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -25,5 +27,17 @@ public class DataBaseConnection {
         Class.forName("com.mysql.cj.jdbc.Driver");
         return getDataSource().getConnection();
 
+    }
+
+    public static void close(Connection connection) throws SQLException{
+        connection.close();
+    }
+
+    public static void close(PreparedStatement preparedStatement) throws SQLException{
+        preparedStatement.close();
+    }
+
+    public static void close(ResultSet resulset) throws SQLException{
+        resulset.close();
     }
 }

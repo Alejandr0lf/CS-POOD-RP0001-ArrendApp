@@ -67,6 +67,13 @@ public class BuildingDAO {
             Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(BuildingDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
         return buildings;
     }

@@ -39,9 +39,18 @@ public class UserClientDAO {
                 users.add(user);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserClientDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(resultado);
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(UserClientDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
         }
         return users;
     }
@@ -65,9 +74,18 @@ public class UserClientDAO {
             x = new User_Client(cedula, nombre, apellido, telefono, correo);
 
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserClientDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(resultado);
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(UserClientDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
         }
         return x;
 
@@ -85,9 +103,17 @@ public class UserClientDAO {
             ps.setLong(1, user.getId());
             registros = ps.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserClientDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(UserClientDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
         }
         return registros;
     }
@@ -102,9 +128,17 @@ public class UserClientDAO {
             ps.setLong(1, user.getId());
             registros = ps.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserClientDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(UserClientDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
         }
         return registros;
     }
@@ -126,9 +160,17 @@ public class UserClientDAO {
             registros = ps.executeUpdate();
 
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserClientDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(UserClientDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
         }
         return registros;
     }

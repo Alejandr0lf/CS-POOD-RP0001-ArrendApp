@@ -28,6 +28,7 @@ public class DirectionDAO {
             con = DataBaseConnection.getConnection();
             ps = con.prepareStatement(SQLCONSULTA);
             resultado = ps.executeQuery();
+
             while (resultado.next()) {
                 String adress = resultado.getString("adress");
                 String coordinates = resultado.getString("coordinates");
@@ -37,9 +38,17 @@ public class DirectionDAO {
                 directions.add(direction);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DirectionDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DirectionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(resultado);
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(DirectionDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
         return directions;
     }
@@ -62,9 +71,17 @@ public class DirectionDAO {
             direction = new Direction(adress, coordinates, neighborhood, city);
 
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DirectionDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DirectionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(resultado);
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(DirectionDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
         return direction;
     }
@@ -82,9 +99,16 @@ public class DirectionDAO {
             ps.setString(4, direction.getCity());
             registros = ps.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DirectionDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DirectionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(DirectionDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
         return registros;
     }
@@ -99,9 +123,16 @@ public class DirectionDAO {
             ps.setString(1, direction.getCoordinates());
             registros = ps.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DirectionDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DirectionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(DirectionDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
         return registros;
     }
@@ -120,9 +151,16 @@ public class DirectionDAO {
             registros = ps.executeUpdate();
 
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DirectionDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DirectionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(DirectionDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
         return registros;
     }

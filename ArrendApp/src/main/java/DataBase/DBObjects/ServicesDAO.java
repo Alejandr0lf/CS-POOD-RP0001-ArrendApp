@@ -39,9 +39,17 @@ public class ServicesDAO {
                 services.add(servicios);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicesDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(resultado);
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(ServicesDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
         return services;
     }
@@ -67,9 +75,17 @@ public class ServicesDAO {
             service = new Services(id, wifi, water, electricity, administration, gas);
 
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicesDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(resultado);
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(ServicesDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
         return service;
     }
@@ -89,9 +105,16 @@ public class ServicesDAO {
             ps.setBoolean(6, services.isGas());
             registros = ps.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicesDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(ServicesDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
         return registros;
     }
@@ -106,9 +129,16 @@ public class ServicesDAO {
             ps.setLong(1, services.getServiceId());
             registros = ps.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicesDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(ServicesDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
         return registros;
     }
@@ -117,7 +147,6 @@ public class ServicesDAO {
         Connection con = null;
         PreparedStatement ps = null;
         int registros = 0;
-
         try {
             con = DataBaseConnection.getConnection();
             ps = con.prepareStatement(SQLACTUALIZAR);
@@ -130,9 +159,16 @@ public class ServicesDAO {
             registros = ps.executeUpdate();
 
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicesDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                DataBaseConnection.close(ps);
+                DataBaseConnection.close(con);
+            } catch (SQLException e) {
+                Logger.getLogger(ServicesDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
         return registros;
     }
