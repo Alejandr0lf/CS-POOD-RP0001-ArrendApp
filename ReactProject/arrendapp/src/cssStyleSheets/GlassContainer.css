@@ -1,0 +1,25 @@
+.glass-container {
+    background: rgba(255, 255, 255, 0.2);
+    /* Fondo semitransparente */
+    border-radius: 20px;
+    /* Bordes redondeados */
+    backdrop-filter: blur(10px);
+    /* Difuminado estilo Glassmorphism */
+    -webkit-backdrop-filter: blur(10px);
+    /* Compatibilidad con Webkit */
+    padding: 20px;
+    /* Márgenes internos opcionales */
+    margin: 10px;
+    /* Márgenes externos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Sombra para realce */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Borde suave */
+}
+
+.transparent-nav {
+    background: rgba(255, 255, 255, 0); /* Fondo completamente transparente */
+    border-radius: inherit; /* Hereda bordes redondeados del contenedor */
+    box-shadow: none; /* Sin sombras adicionales */
+    border: none; /* Elimina cualquier borde extra */
+}

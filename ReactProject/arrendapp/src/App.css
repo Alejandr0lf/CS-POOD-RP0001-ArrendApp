@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.container {
+  display: flex; /* Permite usar propiedades flexbox */
+  flex-direction: column; /* Alinea los elementos verticalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  min-height: 100vh; /* Ocupa toda la altura de la ventana */
+}
+
+.row {
+  width: 100%; /* Opcional: asegura que las filas ocupen todo el ancho */
+}
