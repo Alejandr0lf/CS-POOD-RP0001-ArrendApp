@@ -13,7 +13,7 @@ const Deliver_UsersTable = () => {
     const mostrar = async () =>{
         try {
         const response = await axios ({
-            url:"http://localhost:8080/ArrendApp/api/client/check/All"
+            url:"http://localhost:8080/ArrendApp/api/user/check/All"
 
         });
         setUsers(response.data);
