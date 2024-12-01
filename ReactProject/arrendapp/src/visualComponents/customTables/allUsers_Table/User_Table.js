@@ -8,11 +8,11 @@ const User_Table = ({ data }) => {
       <table className="custom-table table table-striped-columns">
         <thead className="table-header">
           <tr>
-            <th>ID</th>
-            <th>NOMBRE</th>
-            <th>APELLIDO</th>
-            <th>NUMERO TELEFONICO</th>
-            <th>CORREO</th>
+            <th style={{ color: "blue", background : "rgb(255, 255, 255)"}}>ID</th>
+            <th style={{ color: "blue", background : "rgb(255, 255, 255)"}}>NOMBRE</th>
+            <th style={{ color: "blue", background : "rgb(255, 255, 255)"}}>APELLIDO</th>
+            <th style={{ color: "blue", background : "rgb(255, 255, 255)"}}>NUMERO TELEFONICO</th>
+            <th style={{ color: "blue", background : "rgb(255, 255, 255)"}}>CORREO</th>
           </tr>
         </thead>
         <tbody>
