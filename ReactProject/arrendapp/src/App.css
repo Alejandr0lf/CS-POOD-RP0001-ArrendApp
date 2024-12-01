@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  background-image: "url('/background.png')";
+  background-size: cover; /* Hace que la imagen ocupe todo el fondo */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-attachment: fixed; /* Hace que la imagen sea estática */
+  background-position: center; /* Centra la imagen */
+  overflow: hidden; /* Evita barras de desplazamiento inesperadas */
 }
 
 .App-logo {
@@ -38,6 +44,11 @@
 }
 
 .container {
+  position: relative;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+
   display: flex; /* Permite usar propiedades flexbox */
   flex-direction: column; /* Alinea los elementos verticalmente */
   justify-content: center; /* Centra los elementos verticalmente */

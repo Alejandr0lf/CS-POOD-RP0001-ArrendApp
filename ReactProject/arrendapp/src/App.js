@@ -5,7 +5,16 @@ import GlassContainer from "./visualComponents/customComponents/containers/Glass
 
 function App() {
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{
+        backgroundImage: "url('/background.png')",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        backgroundPosition: "center",
+      }}
+    >
       <div class="container mt-3">
         <div class="row">
           <div class="col">
