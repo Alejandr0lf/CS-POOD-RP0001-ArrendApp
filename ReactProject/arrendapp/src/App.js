@@ -8,14 +8,14 @@ function App() {
     <div
       className="App"
       style={{
-        backgroundImage: "url('/background.png')",
+        backgroundImage: "url('/backgroundv1.png')",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
         backgroundPosition: "center",
       }}
     >
-      <div class="container mt-3">
+      <div class="container mt-5 mb-5" style={{borderRadius : 20}}>
         <div class="row">
           <div class="col">
             <GlassContainer>

@@ -1,0 +1,9 @@
+/* styles.css */
+td {
+    background: rgb(255, 255, 255, 0.2); /* Fondo blanco con transparencia */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    -webkit-backdrop-filter: blur(10px); /* Efecto de desenfoque para Safari */
+    border: 1px solid rgb(255, 255, 255, 0.3); /* Borde con transparencia */
+    padding: 10px; /* Espaciado interno */
+    color: #000; /* Color del texto */
+}

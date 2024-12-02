@@ -25,7 +25,7 @@ const Deliver_UsersTable = () => {
     };
 
     return (
-        <div>
+        <div style={{backgroundColor : "rgb(255, 255, 255, 0)"}}>
           <User_Table data = {users}></User_Table>  
             
         </div>

@@ -4,15 +4,15 @@ import "../../../cssStyleSheets/Table_FluentStyle.css";
 
 const User_Table = ({ data }) => {
   return (
-    <div class="m-5" className="table-container">
-      <table className="custom-table table table-striped-columns">
+    <div className="m-5 table-container">
+      <table className="custom-table table">
         <thead className="table-header">
           <tr>
-            <th style={{ color: "blue", background : "rgb(255, 255, 255)"}}>ID</th>
-            <th style={{ color: "blue", background : "rgb(255, 255, 255)"}}>NOMBRE</th>
-            <th style={{ color: "blue", background : "rgb(255, 255, 255)"}}>APELLIDO</th>
-            <th style={{ color: "blue", background : "rgb(255, 255, 255)"}}>NUMERO TELEFONICO</th>
-            <th style={{ color: "blue", background : "rgb(255, 255, 255)"}}>CORREO</th>
+            <th style={{ color: "rgb(0, 0, 0)"}}>ID</th>
+            <th style={{ color: "rgb(0, 0, 0)"}}>NOMBRE</th>
+            <th style={{ color: "rgb(0, 0, 0)"}}>APELLIDO</th>
+            <th style={{ color: "rgb(0, 0, 0)"}}>NUMERO TELEFONICO</th>
+            <th style={{ color: "rgb(0, 0, 0)"}}>CORREO</th>
           </tr>
         </thead>
         <tbody>

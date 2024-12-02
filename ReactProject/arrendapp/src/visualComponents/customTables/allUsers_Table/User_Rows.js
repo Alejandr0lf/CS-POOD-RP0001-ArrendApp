@@ -1,15 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import "../../../cssStyleSheets/Cell_FluentStyle.css";
+import PropTypes from "prop-types";
 
-const User_Rows = ({user}) => {
-    return (
-        <tr>
-            <td class="table-info">{user.id}</td>
-            <td class = "table-info">{user.name}</td>
-            <td class = "table-success">{user.lastname}</td>
-            <td class = "table-light">{user.phoneNumber}</td>
-            <td class = "table-light">{user.email}</td>
-        </tr>
-    );
+const User_Rows = ({ user }) => {
+  return (
+    <tr>
+      <td style={{ backgroundColor: "rgb(255, 255, 255, 0.2)"}}>{user.id}</td>
+      <td style={{ backgroundColor: "rgb(255, 255, 255, 0.2)"}}>{user.name}</td>
+      <td style={{ backgroundColor: "rgb(255, 255, 255, 0.2)"}}>{user.lastname}</td>
+      <td style={{ backgroundColor: "rgb(255, 255, 255, 0.2)"}}>{user.phoneNumber}</td>
+      <td style={{ backgroundColor: "rgb(255, 255, 255, 0.2)"}}>{user.email}</td>
+    </tr>
+  );
 };
 export default User_Rows;

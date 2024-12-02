@@ -3,9 +3,9 @@
     /* Fondo semitransparente */
     border-radius: 20px;
     /* Bordes redondeados */
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     /* Difuminado estilo Glassmorphism */
-    -webkit-backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
     /* Compatibilidad con Webkit */
     padding: 20px;
     /* Márgenes internos opcionales */

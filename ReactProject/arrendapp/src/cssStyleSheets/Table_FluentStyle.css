@@ -1,27 +1,18 @@
 .custom-table {
-    width: 100%; /* Extiende la tabla para llenar el contenedor */
-    background-color: rgba(255, 255, 255, 0.85); /* Fondo translúcido */
-    border-radius: 20px; /* Bordes redondeados */
-    overflow: hidden; /* Asegura que el contenido no sobresalga */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Sombra suave */
-    border-collapse: separate; /* Separa las celdas para respetar los bordes redondeados */
-    border-spacing: 0; /* Elimina el espacio entre celdas */
-  }
-  
-  .table-container {
-    margin: 30px auto;
-    background-color: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    background-color: rgb(255, 255, 255, 0);
     border-radius: 20px;
-    box-shadow: 0 -4px -6px rgba(0, 0, 0, 0.5);
-  }
-  
-  .table-header {
-    background-color: #f8f9fa;
-    text-transform: uppercase;
-    font-weight: bold;
-  }
+    overflow: hidden;
 
-  .loading-gif {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.loading-gif {
     width: 200px;
     height: auto;
-  }
+}
