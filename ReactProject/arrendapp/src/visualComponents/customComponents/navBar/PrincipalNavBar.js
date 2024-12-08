@@ -1,7 +1,7 @@
 import React from "react";
 import GlassContainer from "../containers/GlassContainer";
 
-const PrincipalNavBar = () => {
+const PrincipalNavBar = ({ onNavBarClick }) => {
   return (
     <GlassContainer>
       <nav className="navbar navbar-expand-lg transparent-nav">
@@ -23,18 +23,31 @@ const PrincipalNavBar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <a
+                  className="nav-link"
+                  aria-current="page"
+                  href="#"
+                  onClick={() => onNavBarClick("users")}
+                >
                   Usuarios
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Arrendadores
+                <a
+                  className="nav-link"
+                  href="#"
+                  onClick={() => onNavBarClick("comercials")}
+                >
+                  Comerciales
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Arrendatarios
+                <a
+                  className="nav-link"
+                  href="#"
+                  onClick={() => onNavBarClick("clients")}
+                >
+                  Clientes
                 </a>
               </li>
               <li className="nav-item dropdown">
@@ -45,25 +58,25 @@ const PrincipalNavBar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Propiedades
+                  Menu
                 </a>
-                <ul className="dropdown-menu">
+                <ul className="dropdown-menu disabled">
                   <li>
                     <a className="dropdown-item" href="#">
-                      Direcciones
+                      Esto no se ha programado
                     </a>
                   </li>
                   <li>
                     <a className="dropdown-item" href="#">
-                      Propiedades
+                      Esto no se ha programado
                     </a>
                   </li>
                   <li>
                     <hr className="dropdown-divider" />
                   </li>
-                  <li className="nav-link disabled">
-                    <a className="dropdown-item" aria-disabled="true" href="#">
-                      Bienvenido
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Esto no se ha programado
                     </a>
                   </li>
                 </ul>
@@ -75,7 +88,7 @@ const PrincipalNavBar = () => {
               <input
                 className="form-control me-2 text-wrap flex-grow-1"
                 type="search"
-                placeholder="Ingrese las coordenadas de la Propiedad"
+                placeholder="Esto no se ha programado"
                 aria-label="Search"
                 style={{ minWidth: "350px" }}
               />

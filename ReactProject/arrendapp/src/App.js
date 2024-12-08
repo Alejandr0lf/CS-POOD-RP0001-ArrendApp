@@ -1,23 +1,45 @@
-import Deliver_UsersTable from "./componentsDelivers/Deliver_UsersTable";
 import "./App.css";
+import React, { useState } from "react";
+import Deliver_UsersTable from "./componentsDelivers/Deliver_UsersTable";
+import Deliver_ComrTable from "./componentsDelivers/Deliver_ComrTable";
+import Deliver_ClientTable from "./componentsDelivers/Deliver_ClientTable";
 import PrincipalNavBar from "./visualComponents/customComponents/navBar/PrincipalNavBar";
 import GlassContainer from "./visualComponents/customComponents/containers/GlassContainer";
 
 function App() {
+  const [dataType, setDataType] = useState("users");
+
+  const handleNavBarClick = (type) => {
+    setDataType(type);
+  };
+
+  const renderTable = () => {
+    switch (dataType) {
+      case "users":
+        return <Deliver_UsersTable />;
+      case "comercials":
+        return <Deliver_ComrTable />;
+      case "clients":
+        return <Deliver_ClientTable />;
+      default:
+        return <Deliver_UsersTable />;
+    }
+  };
+
   return (
     <div
       className="App"
       style={{
-        backgroundImage: "url('/backgroundv1.png')",
+        backgroundImage: "url('/backgroundv3.jpg')",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
         backgroundPosition: "center",
       }}
     >
-      <div class="container mt-5 mb-5" style={{borderRadius : 20}}>
-        <div class="row">
-          <div class="col">
+      <div className="container mt-5 mb-5" style={{ borderRadius: 20 }}>
+        <div className="row" style={{ zIndex: 1000 }}>
+          <div className="col">
             <GlassContainer>
               <img
                 alt="Logo"
@@ -27,13 +49,11 @@ function App() {
               />
             </GlassContainer>
           </div>
-          <div class="col">
-            <PrincipalNavBar></PrincipalNavBar>
+          <div className="col">
+            <PrincipalNavBar onNavBarClick={handleNavBarClick} />
           </div>
         </div>
-        <div class="row">
-          <Deliver_UsersTable></Deliver_UsersTable>
-        </div>
+        <div className="row">{renderTable()}</div>
       </div>
     </div>
   );
